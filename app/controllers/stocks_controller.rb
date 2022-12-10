@@ -7,4 +7,7 @@ class StocksController < ApplicationController
 
   def edit
   end
+  
+  def limit
+  end
 end

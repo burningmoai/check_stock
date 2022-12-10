@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "stocks#index"
   get 'about'=>'homes#about'
+  get 'food_limit'=>'foods#limit'
   resources :foods do
     resource :likes, only: [:create, :destroy]
     resources :lists, except: [:show]
