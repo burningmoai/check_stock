@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: お名前
+      food:
+        name: 食材名
+        amount: 個数/量
+        unit: 単位
+        buy_day: 購入日
+        limit: 期限
+        memo: 備考欄
+      category:
+        name: カテゴリ
+      list:
+        amount: 個数/量
+        unit: 単位
+  # activemodel:   # Formオブジェクトを用いた場合
+  #   attributes:
+  #     order_object:
+  #       post_code: 郵便番号
+
+# このようにカラム名を追加する
