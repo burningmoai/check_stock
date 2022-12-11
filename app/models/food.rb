@@ -8,6 +8,6 @@ class Food < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
   def liked_by?(user)
-    likes.exists?(user_id: user.id)
+    likes.where(user_id: user.id).exists?
   end
 end
