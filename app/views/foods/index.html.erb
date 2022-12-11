@@ -15,13 +15,14 @@
         </div>
         <div>
           <h4>食材一覧</h4>
+          <p>食材名をクリックすると<br>詳細・編集画面へ</p>
           <% @foods.each do |food| %>
             <table>
               <tbody>
                 <tr>
                   <td><%= food.name %></td>
                   <td>ストックに追加</td>
-                  <td><%= link_to "削除", food_path(food.id),method: :delete, class:"btn btn-sm btn-outline-secondary"%></td>
+                  <td><%= link_to "削除", food_path(food.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "食材を削除しますか？"} %></td>
                 </tr>
               </tbody>
             </table>
