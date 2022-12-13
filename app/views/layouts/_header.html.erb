@@ -51,6 +51,11 @@
                 <p style="color:#EF8C04;"><i class="fas fa-sign-in-alt"></i>ログイン</p>
               <% end %>
             </li>
+            <li>
+              <%= link_to users_guest_sign_in_path,class: 'nav-link text-nowrap text-light',method: :post do %>
+                <p style="color:#EF8C04;"><i class="fas fa-eye"></i>ゲストログイン</p>
+              <% end %>
+            </li>
           </ul>
         <% end %>
 
