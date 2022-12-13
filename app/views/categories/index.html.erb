@@ -16,7 +16,11 @@
               <tbody>
                 <tr>
                   <td><%= category.name %></td>
-                  <td><%= link_to "削除", category_path(category.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "カテゴリを削除しますか？"} %></td>
+                  <td>
+                    <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  </td>
                 </tr>
               </tbody>
             </table>

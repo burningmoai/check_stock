@@ -7,7 +7,6 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-
     @food.save
       redirect_to request.referer,notice:"食材を登録しました!"
   end
@@ -19,9 +18,17 @@ class FoodsController < ApplicationController
   end
 
   def show
+    @food = Food.find(params[:id])
   end
 
   def edit
+    @food = Food.find(params[:id])
+  end
+
+  def update
+    food = Food.find(params[:id])
+    food.update(food_params)
+    redirect_to food_path, notice: "編集が完了しました"
   end
 private
   def food_params
