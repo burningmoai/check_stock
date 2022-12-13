@@ -25,21 +25,21 @@
                     <%= render "likes/btn", food: food %>
                   </td>
                   <td>
-                    <%#= link_to food_path(food.id) do %>
-                      <%#= food.name %>
-                    <%# end %>
-                    <%= form_with model: @stock, local:true do |f| %>
-                    <%= f.hidden_field :food_id, :value => @food.id %>
+                    <%= link_to food_path(food.id) do %>
+                      <%= food.name %>
+                    <% end %>
+                    <%#= form_with model: @stock, local:true do |f| %>
+                    <%#= f.hidden_field :food_id, :value => @food.id %>
                       <!--第一引数にオブジェクト名food_id、第二引数部分にvalueで受け渡す値 @food.idを指定-->
                       <!--stock controllerの stocks.find_by(food_id:に送ることができる-->
-                      <%= f.label :foods %>
-                      <%= collection_check_boxes(:food, :food_ids, Food.all, :id,:name) do |b| %>
-                      <%= b.label { b.check_box + b.text } %>
-                      <% end %>
-                      <%= f.submit "食材をストックへ追加",class:"btn btn-sm btn-outline-secondary" %>
-                    <% end %>
+                      <%#= f.label :foods %>
+                      <%#= collection_check_boxes(:food, :food_ids, Food.all, :id,:name) do |b| %>
+                      <%#= b.label { b.check_box + b.name } %>
+                      <%# end %>
+                      <%#= f.submit "食材をストックへ追加",class:"btn btn-sm btn-outline-secondary" %>
+                    <%# end %>
                   </td>
-                  <td><%#= link_to "ストックに追加", stocks_path, method: :post, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}をストックに追加しますか？"} %></td>
+                  <td><%= link_to "ストックに追加", stocks_path, method: :post, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}をストックに追加しますか？"} %></td>
                   <td>
                     <%= link_to food_path(food.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>
                       <i class="fas fa-trash-alt"></i>
