@@ -3,6 +3,12 @@
     <h3 class="col-4">食材の詳細</h3>
     <span class="col-3 offset-2"><%= link_to "編集する",edit_food_path(@food.id) %></span>
     <span class="col-3"><%= link_to "一覧へ戻る",foods_path %></span>
+    <span>
+      <%#= link_to food_path,method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>
+        <!--<i class="fas fa-trash-alt"></i>-->
+      <%# end %>
+      <%#= link_to "削除",food_path(@food.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} %>
+    </span>
   </div>
   <table class="mt-3">
     <tr>

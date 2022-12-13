@@ -1,2 +1,29 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+
+<%#= @stocks.inspect %>
+<div class="container pb-5">
+  <div class="row  justify-content-center mt-3">
+    <h3><%= current_user.name %>家のストック</h3>
+  </div>
+  <table class="justify-content-center pb-5">
+    <thead>
+      <tr>
+        <th class="col-3 text-left">食材</th>
+        <th class="col-1 text-center">個数/量</th>
+        <th class="col-2 text-center">購入日</th>
+        <th class="col-2 text-center">賞味期限</th>
+        <th class="col-4 text-left">備考欄</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @stocks.each do |s| %>
+      <tr>
+        <td class="mx-5 text-left"><%= s.food.name %></td>
+        <td class="mx-5 text-center"><%#= s.quantity %></td>
+        <td class="mx-5 text-center"><%= s.buy_day.strftime('%Y/%m/%d') %></td>
+        <td class="mx-5 text-center"><%= s.limit.strftime('%Y/%m/%d') %></td>
+        <td class="mx-5 text-left"><%= s.memo %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

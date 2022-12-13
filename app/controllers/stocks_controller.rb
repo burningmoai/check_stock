@@ -4,14 +4,18 @@ class StocksController < ApplicationController
   end
 
   def create
-    stock = Stock.new(stock_params)
-    stock.user_id = current_user.id
-    stock.food_id = 
-    stock.save
-    redirect_to request.referer,notice: "#{@stock.name}をストックに追加しました!"
+    @stock = current_user.stocks.build(stock_params)
+    
+    if @stock.save
+      redirect_to stocks_path, notice: "#{@stock.food.name}をストックに追加しました!"
+    else
+      @food = Food.new
+      @foods = current_user.foods
+    end
   end
 
   def index
+    @stocks = current_user.stocks
   end
 
   def show

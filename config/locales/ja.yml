@@ -1,4 +1,12 @@
 ja:
+  enums:
+    stock:
+      unit:
+        ko: "個"
+        hon: "本"
+        fukuro: "袋"
+        tama: "玉"
+        mai: "枚"
   activerecord:
     attributes:
       user:
