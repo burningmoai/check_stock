@@ -1,8 +1,13 @@
 class FoodsController < ApplicationController
   def index
     @food = Food.new
-    #@foods = Food.all
+    #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
+    # 複数形にするとallのような感じになる！！
     @foods = current_user.foods
+    @lists = current_user.lists
+    # list = List.find(list_params[:id])
+    # list.update(list_params)
+    # redirect_to foods_path, notice: "編集が完了しました"
   end
 
   def create
@@ -35,4 +40,8 @@ private
   def food_params
     params.require(:food).permit(:name, :user_id, :category_id)
   end
+
+  # def list_params
+  # params.require(:list).permit(:user_id, :food_id, :amount, :unit)
+  # end
 end

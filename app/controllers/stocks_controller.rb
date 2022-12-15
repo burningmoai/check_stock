@@ -11,6 +11,7 @@ class StocksController < ApplicationController
     else
       @food = Food.new
       @foods = current_user.foods
+      # food controllerのindexと同じ変数が
     end
   end
 

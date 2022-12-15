@@ -3,6 +3,7 @@
 <div class="container pb-5">
   <div class="row  justify-content-center mt-3">
     <h3><%= current_user.name %>家のストック</h3>
+    <span class="col-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
   </div>
   <table class="justify-content-center pb-5">
     <thead>
@@ -18,7 +19,7 @@
     <% @stocks.each do |s| %>
       <tr>
         <td class="mx-5 text-left"><%= s.food.name %></td>
-        <td class="mx-5 text-center"><%#= s.quantity %></td>
+        <td class="mx-5 text-center"><%= s.amount.to_s %></td>
         <td class="mx-5 text-center"><%= s.buy_day.strftime('%Y/%m/%d') %></td>
         <td class="mx-5 text-center"><%= s.limit.strftime('%Y/%m/%d') %></td>
         <td class="mx-5 text-left"><%= s.memo %></td>
