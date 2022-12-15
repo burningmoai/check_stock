@@ -9,20 +9,32 @@
     <thead>
       <tr>
         <th class="col-3 text-left">食材</th>
-        <th class="col-1 text-center">個数/量</th>
+        <!--<th class="col-1 text-center">個数/量</th>-->
+        <th></th>
         <th class="col-2 text-center">購入日</th>
         <th class="col-2 text-center">賞味期限</th>
         <th class="col-4 text-left">備考欄</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
     <% @stocks.each do |s| %>
       <tr>
         <td class="mx-5 text-left"><%= s.food.name %></td>
-        <td class="mx-5 text-center"><%= s.amount.to_s %></td>
+        <td class="mx-5 pt-3"><p>×<%= s.amount.to_s %></p></td>
         <td class="mx-5 text-center"><%= s.buy_day.strftime('%Y/%m/%d') %></td>
         <td class="mx-5 text-center"><%= s.limit.strftime('%Y/%m/%d') %></td>
         <td class="mx-5 text-left"><%= s.memo %></td>
+        <td>
+          <%#= link_to stock_path(stock.id),method: :post, class:"btn btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <%# end %>
+        </td>
+        <td>
+          <%#= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{stock.name}を削除しますか？"} do %>
+            <i class="fas fa-trash-alt"></i>
+          <%# end %>
+        </td>
       </tr>
     <% end %>
     </tbody>

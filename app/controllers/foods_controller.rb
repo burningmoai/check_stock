@@ -5,6 +5,8 @@ class FoodsController < ApplicationController
     # 複数形にするとallのような感じになる！！
     @foods = current_user.foods
     @lists = current_user.lists
+    @stocks = current_user.stocks
+
     # list = List.find(list_params[:id])
     # list.update(list_params)
     # redirect_to foods_path, notice: "編集が完了しました"

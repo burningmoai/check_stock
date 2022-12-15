@@ -7,7 +7,7 @@
     <% @lists.each do |l| %>
       <tr>
         <td><%= l.food.name %></td>
-        <td><%= l.amount %></td>
+        <td class="position-absolute"><p>×<%= l.amount %></p></td>
         <td>
       </tr>
     <% end %>

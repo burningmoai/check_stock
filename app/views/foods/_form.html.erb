@@ -1,0 +1,5 @@
+<%= form_with model: food, url: foods_path, local:true do |f| %>
+  <%= f.text_field :name, autocomplete: "name",placeholder: '食材名を入力' %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "-- カテゴリを選択 --" %>
+  <%= f.submit "食材を登録",class:"btn btn-sm btn-outline-secondary" %>
+<% end %>
