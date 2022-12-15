@@ -27,7 +27,6 @@ class StocksController < ApplicationController
 
   def index
     @stocks = current_user.stocks
-    # @stock = Stock.find(params[:id])
 
   end
 

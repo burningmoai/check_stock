@@ -155,24 +155,24 @@
     <div class="col-5 mt-3 pb-5">
       <h3>期限が間近の食材</h3>
       <tbody>
-      <% @stocks.each do |s| %>
+      <% @stocks.each do |stock| %>
       <%# binding.pry %>
-        <%# if s.limit - Time.current =< 14 %>
+        <% if stock.limit - Time.zone.today <= 14 %>
           <tr>
             <td><%= s.food.name %></td>
             <td><span> あと<%= (s.limit - Time.zone.today).to_i %> 日</span></td>
           </tr>
-        <%# elsif s.limit - Time.current >= 14 %>
+        <% elsif stock.limit - Time.zone.today >= 14 %>
           <tr>
-            <td><%= s.food.name %></td>
+            <td><%= stock.food.name %></td>
             <td><span> 期限まであと２週間以上あります</span></td>
           </tr>
-        <%# else %>
+        <% else %>
           <tr>
-            <td><%= s.food.name %></td>
+            <td><%= stock.food.name %></td>
             <td><span> 期限を過ぎています</span></td>
           </tr>
-        <%# end %>
+        <% end %>
       <% end %>
       </tbody>
     </div>
