@@ -1,0 +1,97 @@
+
+<h3>お買いものリスト</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>食材</th>
+      <th></th>
+      <th class="text-right">編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+<% lists.each do |list| %>
+
+
+  <tbody>
+    <tr>
+      <td class="text-nowrap mx-3 text-left"><%= list.food.name %></td>
+      <td><p>×<%= list.amount %></p>
+      <td class="text-right">
+        <%= link_to "#list_edit-item-#{list.food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_edit-item-#{list.food.id}" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        <div class="collapse" id="list_edit-item-<%= list.food.id %>">
+        <!--idをボタンごとに変えないと押していないところでも動いてしまう-->
+          <div class="card card-body">
+            <%= form_with(model: list, method: :patch,local: true) do |f| %>
+              <%= f.hidden_field :food_id %>
+              <%= f.number_field :amount, size:"5" %>
+            <!--ここから単位-->
+              <%#= f.radio_button :unit, "ko" %>
+              <%#= f.label :unit_ko, "個" %>
+              <%#= f.radio_button :unit, "hon" %>
+              <%#= f.label :unit_hon, "本" %>
+              <%#= f.radio_button :unit, "fukuro" %>
+              <%#= f.label :unit_fukuro, "袋" %>
+              <%#= f.radio_button :unit, "tama" %>
+              <%#= f.label :unit_tama, "玉" %>
+              <%#= f.radio_button :unit, "mai" %>
+              <%#= f.label :unit_mai, "枚" %>
+            <!--単位終わり-->
+              <%= f.submit %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+<%= paginate lists %>
+
+<div class="row pb-3">
+  <%= link_to "もっと見る", lists_path, class:"btn btn-sm btn-outline-secondary" %>
+</div>
+<div class="row mt-3">
+  <h3>期限が間近の食材</h3>
+</div>
+<div class="row pb-5">
+  <% stocks.each do |stock| %>
+  <%# binding.pry %>
+    <% if stock.limit - Time.zone.today <= 14 %>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <td><%= stock.food.name %></td>
+          <td>あと<%= (stock.limit - Time.zone.today).to_i %> 日</td>
+        </tr>
+      </tbody>
+    </table>
+    <% elsif stock.limit - Time.zone.today >= 14 %>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <td><%= stock.food.name %></td>
+          <td>期限まであと2週間以上あります</td>
+        </tr>
+      </tbody>
+    </table>
+    <% else %>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <td><%= stock.food.name %></td>
+          <td>期限を過ぎています</td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+
+  <% end %>
+  <%= paginate stocks %>
+</div>

@@ -26,8 +26,8 @@ class StocksController < ApplicationController
   end
 
   def index
-    @stocks = current_user.stocks
-
+    @stocks = current_user.stocks.page(params[:page])
+    @lists = current_user.lists.page(params[:page])
   end
 
   def show

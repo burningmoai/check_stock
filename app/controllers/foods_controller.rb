@@ -4,8 +4,8 @@ class FoodsController < ApplicationController
     #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
     # 複数形にするとallのような感じになる！！
     @foods = current_user.foods
-    @lists = current_user.lists
-    @stocks = current_user.stocks
+    @lists = current_user.lists.page(params[:page])
+    @stocks = current_user.stocks.page(params[:page])
 
     # list = List.find(list_params[:id])
     # list.update(list_params)
@@ -43,6 +43,9 @@ private
     params.require(:food).permit(:name, :user_id, :category_id)
   end
 
+  def category_params
+    params.require(:category).permit(:name)
+  end
   # def list_params
   # params.require(:list).permit(:user_id, :food_id, :amount, :unit)
   # end
