@@ -18,22 +18,22 @@
       </tr>
     </thead>
     <tbody>
-    <% @stocks.each do |s| %>
+    <% @stocks.each do |stock| %>
     <!--変更する-->
       <tr>
-        <td class="mx-5 text-left"><%= s.food.name %></td>
-        <td class="mx-5 pt-3"><p>×<%= s.amount.to_s %></p></td>
-        <td class="mx-5 text-center"><%= s.buy_day.strftime('%Y/%m/%d') %></td>
-        <td class="mx-5 text-center"><%= s.limit.strftime('%Y/%m/%d') %></td>
-        <td class="mx-5 text-left"><%= s.memo %></td>
+        <td class="mx-5 text-left"><%= stock.food.name %></td>
+        <td class="mx-5 pt-3"><p>×<%= stock.amount.to_s %></p></td>
+        <td class="mx-5 text-center"><%= stock.buy_day.strftime('%Y/%m/%d') %></td>
+        <td class="mx-5 text-center"><%= stock.limit.strftime('%Y/%m/%d') %></td>
+        <td class="mx-5 text-left"><%= stock.memo %></td>
         <td>
 
-          <%= link_to edit_stock_path(s.id),class:"btn btn-sm btn-outline-secondary" do %>
+          <%= link_to edit_stock_path(stock.id),class:"btn btn-sm btn-outline-secondary" do %>
             <i class="fas fa-edit"></i>
           <% end %>
         </td>
         <td>
-          <%= link_to stock_path(s.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{s.food.name}を削除しますか？"} do %>
+          <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </td>
