@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   belongs_to :food
   belongs_to :user
+  belongs_to :category
 
   validates :amount, presence: true
   validates :limit, presence: true
