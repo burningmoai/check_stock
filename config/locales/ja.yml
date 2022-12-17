@@ -23,6 +23,13 @@ ja:
       list:
         amount: 個数/量
         unit: 単位
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
   # activemodel:   # Formオブジェクトを用いた場合
   #   attributes:
   #     order_object:

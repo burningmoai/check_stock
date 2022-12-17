@@ -6,25 +6,28 @@
       <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks %>
     </div>
 
-    <div class="col-8 pb-5"><!--追加した-->
-      <div class="text-center mt-3">
-      <h3 class="text-center pb-3">食材一覧・追加</h3>
-        <div class="pb-3">
-          <h4 class="text-center">食材の追加</h4>
-          <%= render 'foods/form', food: @food %>
-        </div>
+    <div class="col-8 mt-3 pb-5"><!--追加した-->
+      <div class="row justify-content-center">
+        <h3 class="text-right pb-3">食材・カテゴリの追加</h3>
       </div>
+      <div class="row justify-content-center">
+                <div class="text-right mt-3">
+                  <div class="col-4 pb-3">
+                    <h4 class="text-nowrap">食材の追加</h4>
+                    <%= render 'foods/form', food: @food %>
+                  </div>
+                </div>
 
-          <!--category-->
-      <div class="text-center mt-3 pb-3">
-      <h3 class="text-center pb-3">カテゴリ一覧・追加</h3>
-        <div class="pb-3">
-          <h4 class="text-center">カテゴリの追加</h4>
-          <%= render 'categories/form', category: @category %>
-        </div>
+                    <!--category-->
+                <div class="col-4 text-center mt-3 pb-3">
+                <!--<h3 class="text-center pb-3">カテゴリ一覧・追加</h3>-->
+                  <div class="pb-3">
+                    <h4>カテゴリの追加</h4>
+                    <%= render 'categories/form', category: @category %>
+                  </div>
+                </div>
+                    <!--category-->
       </div>
-          <!--category-->
-
 
     <div>
       <div class="row justify-content-center">
@@ -34,20 +37,20 @@
         <p class="text-center ">食材名をクリックすると詳細・編集画面へ</p>
       </div>
       <div class="row justify-content-center pb-5">
-        <table>
+        <table class="table table-hover justify-content-center mx-5 pb-5">
           <% @foods.each do |food| %>
             <tbody>
             <tr>
-              <td id="like_btn_<%= food.id %>",class="col-1">
+              <td id="like_btn_<%= food.id %>">
                 <%= render "likes/btn", food: food %>
               </td>
-              <td class="col-3">
+              <td>
                 <%= link_to food_path(food.id) do %>
                   <%= food.name %>
                 <% end %>
                 <p class="col-1 text-nowrap">在庫:<%= food.stocks.any? ? "○" : "×" %></p>
               </td>
-              <td class="col-3">
+              <td>
                 <%= link_to "ストックに追加", "#stock_item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "stock_item-#{food.id}" %>
                 <div class="collapse" id="stock_item-<%= food.id %>">
                   <div class="card card-body">
@@ -75,7 +78,7 @@
                   </div>
                 </div>
               </td>
-              <td class="col-4">
+              <td>
                 <%= link_to "お買いものリストに追加", "#list_add-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_add-item-#{food.id}" %>
                 <div class="collapse" id="list_add-item-<%= food.id %>">
                   <div class="card card-body">
@@ -99,7 +102,7 @@
                   </div>
                 </div>
               </td>
-              <td class="col-1">
+              <td>
                 <%= link_to food_path(food.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>

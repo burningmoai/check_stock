@@ -6,6 +6,7 @@ class FoodsController < ApplicationController
     @foods = current_user.foods
     @lists = current_user.lists.page(params[:page])
     @stocks = current_user.stocks.page(params[:page])
+    @category = Category.new
 
     # list = List.find(list_params[:id])
     # list.update(list_params)
