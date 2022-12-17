@@ -6,38 +6,27 @@
       <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks %>
     </div>
 
-    <div class="col-8 mt-3 pb-5"><!--追加した-->
-      <div class="row justify-content-center">
-        <h3 class="text-right pb-3">食材・カテゴリの追加</h3>
-      </div>
-      <div class="row justify-content-center">
-                <div class="text-right mt-3">
-                  <div class="col-4 pb-3">
-                    <h4 class="text-nowrap">食材の追加</h4>
-                    <%= render 'foods/form', food: @food %>
-                  </div>
-                </div>
-
-                    <!--category-->
-                <div class="col-4 text-center mt-3 pb-3">
-                <!--<h3 class="text-center pb-3">カテゴリ一覧・追加</h3>-->
-                  <div class="pb-3">
-                    <h4>カテゴリの追加</h4>
-                    <%= render 'categories/form', category: @category %>
-                  </div>
-                </div>
-                    <!--category-->
-      </div>
-
+    <div class="col-7 offset-1  pb-5"><!--追加した-->
     <div>
-      <div class="row justify-content-center">
-        <h4 class="text-center mt-3">食材一覧</h4>
+      <div class="row justify-content-center mt-3">
+        <h3 class="text-center"><i class="fas fa-carrot mx-3"></i>食材一覧</h3>
+        <span class="mx-3"><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
       </div>
       <div class="row justify-content-center">
         <p class="text-center ">食材名をクリックすると詳細・編集画面へ</p>
       </div>
+      <div class="row justify-content-center mb-2">
+        <%= render 'categories/btn', categories: @categories %>
+      </div>
       <div class="row justify-content-center pb-5">
         <table class="table table-hover justify-content-center mx-5 pb-5">
+          <tr>
+            <th></th>
+            <th>食材</th>
+            <th class="text-center">ストックへ</th>
+            <th class="text-center">お買いものリストへ</th>
+            <th>削除</th>
+          </tr>
           <% @foods.each do |food| %>
             <tbody>
             <tr>
@@ -50,13 +39,17 @@
                 <% end %>
                 <p class="col-1 text-nowrap">在庫:<%= food.stocks.any? ? "○" : "×" %></p>
               </td>
-              <td>
-                <%= link_to "ストックに追加", "#stock_item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "stock_item-#{food.id}" %>
+              <td class="text-center">
+                <%= link_to "#stock_item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "stock_item-#{food.id}" do %>
+                  + <i class="fas fa-cubes"></i> 追加
+                <% end %>
                 <div class="collapse" id="stock_item-<%= food.id %>">
                   <div class="card card-body">
+                    <%= render 'foods/add_form', model: food.stocks.build %>
                     <%= form_with(model: food.stocks.build, local: true) do |f| %>
                     <!--↑アソシエーションの記述があればbuildで作れる-->
                       <%= f.hidden_field :food_id %>
+                      <%= f.hidden_field :category_id %>
                       <%= f.number_field :amount, size:"5" %>
                     <!--ここから単位-->
                       <%= f.radio_button :unit, "ko" %>
@@ -78,8 +71,10 @@
                   </div>
                 </div>
               </td>
-              <td>
-                <%= link_to "お買いものリストに追加", "#list_add-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_add-item-#{food.id}" %>
+              <td class="text-center">
+                <%= link_to "#list_add-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_add-item-#{food.id}" do %>
+                  + <i class="fas fa-clipboard-list"></i> 追加
+                <% end %>
                 <div class="collapse" id="list_add-item-<%= food.id %>">
                   <div class="card card-body">
                     <%= form_with(model: food.lists.build, local: true) do |f| %>
@@ -111,8 +106,26 @@
           </tbody>
           <% end %>
         </table>
+        <%= paginate @foods %>
       </div>
     </div>
+    <div class="row justify-content-center">
+        <h3 class="text-right pb-3"><i class="fas fa-plus mx-3"></i>食材・カテゴリの追加</h3>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-4 text-center mt-3 pb-3">
+            <h4><i class="fas fa-carrot mr-1"></i>食材の追加</h4>
+            <%= render 'foods/form', food: @food_new %>
+          </div>
+        <!--category-->
+        <div class="col-4 text-center mt-3 pb-3">
+          <div class="pb-3">
+            <h4><i class="fas fa-align-justify mr-1"></i>カテゴリの追加</h4>
+            <%= render 'categories/form', category: @category_new %>
+          </div>
+        </div>
+        <!--category-->
+      </div>
   </div>
   </div>
 </div><!--全体のrow-->

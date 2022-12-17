@@ -1,13 +1,18 @@
 class FoodsController < ApplicationController
   def index
-    @food = Food.new
+    @food_new = Food.new
+    @category_new = Category.new
     #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
     # 複数形にするとallのような感じになる！！
-    @foods = current_user.foods
     @lists = current_user.lists.page(params[:page])
     @stocks = current_user.stocks.page(params[:page])
-    @category = Category.new
-
+    @categories = Category.all
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @foods = @category.foods.page(params[:page]).per(10)
+      else
+        @foods = current_user.foods.page(params[:page]).per(10)
+      end
     # list = List.find(list_params[:id])
     # list.update(list_params)
     # redirect_to foods_path, notice: "編集が完了しました"

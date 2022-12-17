@@ -26,8 +26,15 @@ class StocksController < ApplicationController
   end
 
   def index
-    @stocks = current_user.stocks.page(params[:page])
+    # @stocks = current_user.stocks.page(params[:page])
     @lists = current_user.lists.page(params[:page])
+    @categories = Category.all
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @stocks = @category.stocks#.page(params[:page]).per(10)
+      else
+        @stocks = current_user.stocks#.page(params[:page]).per(10)
+      end
   end
 
   def show
@@ -53,7 +60,7 @@ class StocksController < ApplicationController
   end
 
 private
- def stock_params
-   params.require(:stock).permit(:user_id, :food_id, :amount, :unit, :buy_day, :limit, :memo)
- end
+  def stock_params
+    params.require(:stock).permit(:user_id, :food_id, :category_id, :amount, :unit, :buy_day, :limit, :memo)
+  end
 end

@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_12_09_063216) do
   create_table "stocks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "food_id"
+    t.integer "category_id"
     t.integer "amount"
     t.string "unit"
     t.date "buy_day"
