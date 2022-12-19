@@ -22,7 +22,6 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-    binding.pry
     @food.save
       redirect_to request.referer,notice:"食材を登録しました!"
   end
@@ -39,6 +38,7 @@ class FoodsController < ApplicationController
 
   def edit
     @food = Food.find(params[:id])
+
   end
 
   def update
