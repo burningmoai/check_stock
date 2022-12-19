@@ -40,9 +40,12 @@ class FoodsController < ApplicationController
   end
 
   def update
-    food = Food.find(params[:id])
-    food.update(food_params)
-    redirect_to food_path, notice: "編集が完了しました"
+    @food = Food.find(params[:id])
+    if @food.update(food_params)
+      redirect_to request.referer, notice: "編集が完了しました"
+    else
+      render :edit, notice: "保存できませんでした" #メッセージ表示できない
+    end
   end
 private
   def food_params

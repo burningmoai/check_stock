@@ -1,7 +1,9 @@
 <div class="container pb-5">
   <div class="row">
     <h3 class="col-4">食材の詳細</h3>
-    <span class="col-3 offset-2"><%= link_to "編集する",edit_food_path(@food.id), class:"btn btn-sm btn-outline-secondary" %></span>
+    <span class="col-1 offset-2">
+      <%= render "edit_btn", food: @food %>
+    </span>
     <span class="col-3"><%= link_to "一覧へ戻る", foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
     <span>
       <%#= link_to food_path,method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>

@@ -38,6 +38,7 @@ class StocksController < ApplicationController
   end
 
   def show
+    @stock = Stock.find(params[:id])
   end
 
   def edit
@@ -50,7 +51,7 @@ class StocksController < ApplicationController
   def update
     stock = Stock.find(params[:id])
     stock.update(stock_params)
-    redirect_to stocks_path, notice: "編集が完了しました"
+    redirect_to request.referer, notice: "編集が完了しました"
   end
 
   def destroy

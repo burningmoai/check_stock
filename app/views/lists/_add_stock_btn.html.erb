@@ -1,0 +1,31 @@
+<div class="position-relative">
+  <%= link_to "#list_item-#{list.food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_item-#{list.food.id}", style: "z-index:1;" do %>
+    + <i class="fas fa-cubes"></i>
+  <% end %>
+  <div class="collapse position-absolute" id="list_item-<%= list.food.id %>" style="z-index:2;">
+    <div class="card card-body">
+      <%= form_with(model: list.food.stocks.build, local: true) do |f| %>
+      <!--↑アソシエーションの記述があればbuildで作れる-->
+        <%= f.hidden_field :food_id %>
+      <div class="form-row align-items-baseline">
+        <%= f.label :amount, "個数　" %>
+        <%= f.number_field :amount , style: "width:50px;" %>
+      </div>
+      <!--ここから単位-->
+      <!--単位終わり-->
+      <div class="form-row align-items-baseline">
+        <%= f.label :buy_day, "購入日" %>
+        <%= f.date_field :buy_day %>
+      </div>
+      <div class="form-row align-items-baseline">
+        <%= f.label :limit, "期限　" %>
+        <%= f.date_field :limit %>
+      </div>
+        <%= f.text_area :memo,placeholder: '備考欄' %>
+      <div class="form-row justify-content-center align-items-baseline">
+        <%= f.submit %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

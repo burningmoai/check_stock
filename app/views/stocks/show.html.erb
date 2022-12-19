@@ -1,2 +1,42 @@
-<h1>Stocks#show</h1>
-<p>Find me in app/views/stocks/show.html.erb</p>
+<div class="container pb-5">
+  <div class="row pb-5">
+    <h3 class="col-4">ストックの詳細</h3>
+    <div class="position-relative col-1 offset-2">
+      <%= render "edit_amount_btn", stock: @stock %>
+
+    <span class="col-3"><%= link_to "一覧へ戻る", stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
+    <span>
+      <%#= link_to food_path,method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>
+        <!--<i class="fas fa-trash-alt"></i>-->
+      <%# end %>
+      <%#= link_to "削除",food_path(@food.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{food.name}を削除しますか？"} %>
+    </span>
+  </div>
+  <table class="mt-3">
+    <tr>
+      <th class="col-1">ストック食材</th>
+      <td class="col-3"><%= @stock.food.name %>　×<%= @stock.amount.to_s %></td>
+
+    </tr>
+    <tr>
+      <th class="col-1 text-nowrap">ストックのカテゴリ</th>
+      <td class="col-3"><%= @stock.category.name %></td>
+    </tr>
+
+    <tr>
+      <th class="col-1 text-nowrap">購入日</th>
+      <td class="col-3"><%= @stock.buy_day %></td>
+    </tr>
+
+    <tr>
+      <th class="col-1 text-nowrap">期限</th>
+      <td class="col-3"><%= @stock.limit %></td>
+    </tr>
+
+    <tr>
+      <th class="col-1 text-nowrap pb-5">備考欄</th>
+      <td class="col-3"><%= @stock.memo %></td>
+    </tr>
+
+  </table>
+</div>
