@@ -43,7 +43,7 @@
             <td class="mx-5 text-left"><%= stock.memo %></td>
             <td>
               <div class="position-relative">
-                <%= render "amount_edit_btn", stock: stock %>
+                <%= render "edit_amount_btn", stock: stock %>
               </div>
             </td>
             <td>
@@ -55,7 +55,7 @@
         <% end %>
         </tbody>
       </table>
-      <%#= paginate @stocks %>
+      <%= paginate @stocks %>
     </div>
   </div>
 </div>

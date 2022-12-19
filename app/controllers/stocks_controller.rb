@@ -31,9 +31,9 @@ class StocksController < ApplicationController
     @categories = Category.all
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @stocks = @category.stocks#.page(params[:page]).per(10)
+        @stocks = @category.stocks.page(params[:page]).per(10)
       else
-        @stocks = current_user.stocks#.page(params[:page]).per(10)
+        @stocks = current_user.stocks.page(params[:page]).per(10)
       end
   end
 

@@ -1,6 +1,8 @@
 class FoodsController < ApplicationController
   def index
     @food_new = Food.new
+    @list = List.new
+    @stock = Stock.new
     @category_new = Category.new
     #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
     # 複数形にするとallのような感じになる！！
