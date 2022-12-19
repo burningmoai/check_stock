@@ -1,0 +1,4 @@
+<%= link_to "ALL",foods_path, class:"btn btn-sm btn-outline-secondary mx-1" %>
+<% categories.each do |category| %>
+  <%= link_to category.name,foods_path(category_id: category.id), class:"btn btn-sm btn-outline-secondary mx-1" %>
+<% end %>

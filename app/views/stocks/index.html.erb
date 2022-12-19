@@ -1,2 +1,61 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+
+<%#= @stocks.inspect %>
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-4 mt-3 pb-5">
+      <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks %>
+    </div>
+
+    <div class="col-7 offset-1 pb-5">
+      <div class="row justify-content-center mt-3">
+        <h3><i class="fas fa-cubes mx-3"></i><%= current_user.name %>家のストック</h3>
+        <span class="mx-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
+      </div>
+      <div class="row justify-content-center mb-2">
+        <%= render 'stocks/category_btn', categories: @categories %>
+      </div>
+      <table class="table table-hover justify-content-center pb-5">
+        <thead>
+          <tr>
+            <th class="col-3 text-left">食材</th>
+            <!--<th class="col-1 text-center">個数/量</th>-->
+            <th></th>
+            <th class="col-2 text-center">購入日</th>
+            <th class="col-2 text-center">賞味期限</th>
+            <th class="col-4 text-center">備考欄</th>
+            <th class="text-nowrap">編集</th>
+            <th class="text-nowrap">削除</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        <% @stocks.each do |stock| %>
+        <!--変更済 ブロック変数わかりやすく-->
+          <tr>
+            <td class="mx-5 text-left">
+              <%= link_to stock_path(stock.id) do %>
+                <%= stock.food.name %>
+              <% end %>
+            </td>
+            <td class="mx-5"><p>×<%= stock.amount.to_s %></p></td>
+            <td class="mx-5 text-center"><%= stock.buy_day.strftime('%Y/%m/%d') %></td>
+            <td class="mx-5 text-center"><%= stock.limit.strftime('%Y/%m/%d') %></td>
+            <td class="mx-5 text-left"><%= stock.memo %></td>
+            <td>
+              <div class="position-relative">
+                <%= render "edit_amount_btn", stock: stock %>
+              </div>
+            </td>
+            <td>
+              <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @stocks %>
+    </div>
+  </div>
+</div>

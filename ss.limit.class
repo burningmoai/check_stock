@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/check_stock/app/views/foods/index.html.erb:159 #<Class:0x00007f4a01fcbde8>#_app_views_foods_index_html_erb__932879442186514808_167200:
+
+    [1;34m154[0m:     </div>
+    [1;34m155[0m:     <div class="col-5 mt-3 pb-5">
+    [1;34m156[0m:       <h3>期限が間近の食材</h3>
+    [1;34m157[0m:       <tbody>
+    [1;34m158[0m:       <% @stocks.each do |s| %>
+ => [1;34m159[0m:       <% binding.pry %>
+    [1;34m160[0m:         <% if s.limit - Time.zone.today <= 14 %>
+    [1;34m161[0m:           <tr>
+    [1;34m162[0m:             <td><%= s.food.name %></td>
+    [1;34m163[0m:             <td><span> あと<%= (s.limit - Time.zone.today).to_i %> 日</span></td>
+    [1;34m164[0m:           </tr>
+
