@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  food_id: 1
+  amount: 1
+  unit: MyString
+  buy_day: 2022-12-09 06:29:04
+  limit: 2022-12-09 06:29:04
+  memo: MyText
+
+two:
+  user_id: 1
+  food_id: 1
+  amount: 1
+  unit: MyString
+  buy_day: 2022-12-09 06:29:04
+  limit: 2022-12-09 06:29:04
+  memo: MyText

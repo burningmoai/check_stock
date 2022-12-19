@@ -1,0 +1,9 @@
+<% if food.liked_by?(current_user) %>
+  <%= link_to food_likes_path(food.id), method: :delete,remote:true do %>
+    <p style="color:#EF3A03;"><i class="fas fa-heart"></i></p>
+  <% end %>
+<% else %>
+  <%= link_to food_likes_path(food.id), method: :post,remote:true do %>
+    <p class="text-secondary"><i class="far fa-heart"></i></p>
+  <% end %>
+<% end %>

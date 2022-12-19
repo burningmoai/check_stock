@@ -1,0 +1,38 @@
+ja:
+  enums:
+    stock:
+      unit:
+        ko: "個"
+        hon: "本"
+        fukuro: "袋"
+        tama: "玉"
+        mai: "枚"
+  activerecord:
+    attributes:
+      user:
+        name: お名前
+      food:
+        name: 食材名
+        amount: 個数/量
+        unit: 単位
+        buy_day: 購入日
+        limit: 期限
+        memo: 備考欄
+      category:
+        name: カテゴリ
+      list:
+        amount: 個数/量
+        unit: 単位
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
+  # activemodel:   # Formオブジェクトを用いた場合
+  #   attributes:
+  #     order_object:
+  #       post_code: 郵便番号
+
+# このようにカラム名を追加する

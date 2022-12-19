@@ -1,0 +1,56 @@
+<div class="container pb-5">
+  <div class="row justify-content-center mt-3">
+    <h3>お買いものリスト</h3>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <table class="mt-3">
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.food.name %></td>
+        <td><p>×<%= list.amount %></p></td>
+        <td>
+          <%= link_to edit_list_path(list.id),class:"btn btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </td>
+        <!--<td><!--買いものリストからストックに追加-->
+        <!--  <%#= link_to "#list_item-#{list.food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_item-#{list.food.id}" do %>-->
+        <!--    <i class="fas fa-cubes"></i>-->
+        <!--  <%# end %>-->
+        <!--  <div class="collapse" id="list_item-<%#= list.food.id %>">-->
+        <!--    <div class="card card-body">-->
+        <!--      <%#= form_with(model: list.stocks, local: true) do |f| %>-->
+              <!--↑アソシエーションの記述があればbuildで作れる-->
+        <!--        <%#= f.hidden_field :food_id %>-->
+        <!--        <%#= f.number_field :amount, size:"5" %>-->
+              <!--ここから単位-->
+        <!--        <%#= f.radio_button :unit, "ko" %>-->
+        <!--        <%#= f.label :unit_ko, "個" %>-->
+        <!--        <%#= f.radio_button :unit, "hon" %>-->
+        <!--        <%#= f.label :unit_hon, "本" %>-->
+        <!--        <%#= f.radio_button :unit, "fukuro" %>-->
+        <!--        <%#= f.label :unit_fukuro, "袋" %>-->
+        <!--        <%#= f.radio_button :unit, "tama" %>-->
+        <!--        <%#= f.label :unit_tama, "玉" %>-->
+        <!--        <%#= f.radio_button :unit, "mai" %>-->
+        <!--        <%#= f.label :unit_mai, "枚" %>-->
+              <!--単位終わり-->
+        <!--        <%#= f.date_field :buy_day %>-->
+        <!--        <%#= f.date_field :limit %>-->
+        <!--        <%#= f.text_area :memo,placeholder: '備考欄' %>-->
+        <!--        <%#= f.submit %>-->
+        <!--      <%# end %>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--</td>-->
+
+        <td>
+          <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
