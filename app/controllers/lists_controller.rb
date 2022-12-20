@@ -14,7 +14,7 @@ class ListsController < ApplicationController
   # binding.pry
     if @list.save
 
-      redirect_to foods_path, notice: "#{@list.food.name}をストックに追加しました!"
+      redirect_to foods_path, notice: "#{@list.food.name}をお買いものリストに追加しました!"
     else
       @food = Food.new
       @foods = current_user.foods

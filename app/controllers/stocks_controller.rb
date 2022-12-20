@@ -6,11 +6,13 @@ class StocksController < ApplicationController
   def create
     @stock = current_user.stocks.build(stock_params)
 
+  #現段階で全く機能してない
     if current_user.stocks.find_by(food_id: params[:stock][:food_id]).present? #同じ食材ある？
       stock = current_user.stocks.find_by(food_id: params[:stock][:food_id])
       stock.amount += params[:stock][:amount].to_i #stockパラムの数量を足す
-
+  binding.pry
       if @stock.save #保存
+        # logger.debug @deliver.errors.inspect
         redirect_to stocks_path, notice: "#{@stock.food.name}をストックに追加しました!"
       else #保存ができなかったらindex
         @food = Food.new
@@ -28,6 +30,7 @@ class StocksController < ApplicationController
   def index
     # @stocks = current_user.stocks.page(params[:page])
     @lists = current_user.lists.page(params[:page])
+    @stocks_limit = current_user.stocks.order(limit: "ASC") #反映されず
     @categories = Category.all
       if params[:category_id]
         @category = Category.find(params[:category_id])
@@ -36,7 +39,7 @@ class StocksController < ApplicationController
         @stocks = current_user.stocks.page(params[:page]).per(10)
       end
 
-    @categories = Category.all
+    # @categories = Category.all
     @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
 
@@ -49,6 +52,8 @@ class StocksController < ApplicationController
   end
 
   def limit
+    @stocks = current_user.stocks.order(limit: "ASC")
+    @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
 
   def update

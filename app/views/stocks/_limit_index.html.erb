@@ -1,0 +1,26 @@
+<% stocks.each do |stock| %>
+  <table class="table table">
+    <tbody>
+      <tr>
+        <td style="width:30%;"><%= stock.food.name %></td>
+      <% if stock.limit - Time.zone.today == 0 %>
+        <td style="width:70%;">
+          <span style="color: #EF8C04;">当日です</span>
+        </td>
+      <% elsif stock.limit - Time.zone.today <= 14 %>
+        <td style="width:70%;">
+          <span>あと<%= (stock.limit - Time.zone.today).to_i %> 日</span>
+        </td>
+      <% elsif stock.limit - Time.zone.today >= 14 %>
+        <td style="width:70%;">
+          <span>期限まであと2週間以上あります</span>
+        </td>
+      <% else %>
+        <td style="width:70%;">
+          <span class="text-danger">期限を過ぎています</span>
+        </td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

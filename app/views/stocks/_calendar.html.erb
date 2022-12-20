@@ -1,0 +1,8 @@
+<%= month_calendar events: stocks do |date, stocks| %>
+  <%= date.day %>
+  <% stocks.each do |stock| %>
+    <div style="font-size:12px;">
+      <%= stock.food.name %>
+    </div>
+  <% end %>
+<% end %>

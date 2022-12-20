@@ -3,7 +3,7 @@
 <div class="container pb-5">
   <div class="row">
     <div class="col-4 mt-3 pb-5">
-      <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks %>
+      <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks_limit %>
     </div>
 
     <div class="col-7 offset-1 pb-5">
@@ -47,7 +47,7 @@
               </div>
             </td>
             <td>
-              <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
+              <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-danger", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </td>
@@ -59,14 +59,7 @@
 
       <div class="row justify-content-center">
         <div class="col-12">
-          <%= month_calendar events: @stocks_calendar do |date, stocks| %>
-            <%= date.day %>
-            <% stocks.each do |stock| %>
-              <div style="font-size:12px;">
-                <%= stock.food.name %>
-              </div>
-            <% end %>
-          <% end %>
+          <%= render 'calendar', stocks: @stocks_calendar %>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
-    @category = Category.new
+    @category_new = Category.new
   end
 
   def create
@@ -17,6 +17,12 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    category = Category.find(params[:id])
+    category.update(category_params)
+    redirect_to request.referer, notice: "カテゴリを編集しました"
   end
 private
   def category_params
