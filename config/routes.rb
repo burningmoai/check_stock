@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-  root to: "stocks#index"
+  root to: "homes#about"
   get 'about'=>'homes#about'
   get 'food_limit'=>'stocks#limit'
   resources :foods do
