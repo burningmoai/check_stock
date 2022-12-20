@@ -56,6 +56,20 @@
         </tbody>
       </table>
       <%= paginate @stocks %>
+
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <%= month_calendar events: @stocks_calendar do |date, stocks| %>
+            <%= date.day %>
+            <% stocks.each do |stock| %>
+              <div style="font-size:12px;">
+                <%= stock.food.name %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

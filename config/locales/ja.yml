@@ -30,6 +30,7 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+
   # activemodel:   # Formオブジェクトを用いた場合
   #   attributes:
   #     order_object:
