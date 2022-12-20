@@ -11,4 +11,8 @@ class Stock < ApplicationRecord
   def quantity
     amount.to_s + unit
   end
+
+  def start_time
+    self.limit
+  end
 end

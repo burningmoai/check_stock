@@ -35,6 +35,9 @@ class StocksController < ApplicationController
       else
         @stocks = current_user.stocks.page(params[:page]).per(10)
       end
+
+    @categories = Category.all
+    @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
 
   def show
