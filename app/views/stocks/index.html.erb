@@ -58,14 +58,6 @@
       <%= paginate @stocks %>
 
       <div class="row justify-content-center">
-        <%#= month_calendar events: @stocks_calendar do |date, stocks| %>
-          <%#= date.day %>
-          <%#= stocks.each do |stock| %>
-            <!--<div>-->
-              <%#= link_to stock.name, edit_stock_path_(stock) %>
-            <!--</div>-->
-          <%# end %>
-        <%# end %>
         <div class="col-12">
           <%= month_calendar events: @stocks_calendar do |date, stocks| %>
             <%= date.day %>
