@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     food = Food.find(params[:food_id])
     @food = Food.find(params[:food_id])

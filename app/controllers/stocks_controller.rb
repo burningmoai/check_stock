@@ -1,4 +1,6 @@
 class StocksController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @stock = Stock.new
   end
@@ -30,7 +32,7 @@ class StocksController < ApplicationController
   def index
     # @stocks = current_user.stocks.page(params[:page])
     @lists = current_user.lists.page(params[:page])
-    @stocks_limit = current_user.stocks.order(limit: "ASC") #反映されず
+    @stocks_limit = current_user.stocks.order(limit: "ASC") #反映されず→気付いたら反映されていた！！！！！！
     @categories = Category.all
       if params[:category_id]
         @category = Category.find(params[:category_id])

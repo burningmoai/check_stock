@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_category, only: %i[destroy update]
+
   def index
-    @categories = Category.all
+    @categories = Category.all #current_user.categoriesが反映できない！！！こいつのみ
     @category_new = Category.new
   end
 
@@ -11,8 +14,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    category = Category.find(params[:id])
-    category.destroy
+    @category.destroy
     redirect_to request.referer, notice: "カテゴリを削除しました"
   end
 
@@ -20,12 +22,15 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:id])
-    category.update(category_params)
+    @category.update(category_params)
     redirect_to request.referer, notice: "カテゴリを編集しました"
   end
 private
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 end

@@ -1,11 +1,15 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_food, only: %i[show edit destroy update]
+
   def index
     @food_new = Food.new
     @category_new = Category.new
     #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
     # 複数形にするとallのような感じになる！！
     @lists = current_user.lists.page(params[:page])
-    @stocks = current_user.stocks.page(params[:page])
+    @stocks_limit = current_user.stocks.order(limit: "ASC")
+    # @stocks = current_user.stocks.page(params[:page])
     @categories = Category.all
       if params[:category_id]
         @category = Category.find(params[:category_id])
@@ -26,26 +30,21 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    food = Food.find(params[:id])
-    food.destroy
+    @food.destroy
     redirect_to request.referer, notice: "食材を削除しました"
   end
 
   def show
-    @food = Food.find(params[:id])
   end
 
   def edit
-    @food = Food.find(params[:id])
-
   end
 
   def update
-    @food = Food.find(params[:id])
     if @food.update(food_params)
       redirect_to request.referer, notice: "編集が完了しました"
     else
-      render :edit, notice: "保存できませんでした" #メッセージ表示できない
+      render :index, notice: "保存できませんでした" #メッセージ表示できない
     end
   end
 private
@@ -59,4 +58,8 @@ private
   # def list_params
   # params.require(:list).permit(:user_id, :food_id, :amount, :unit)
   # end
+
+  def set_food
+    @food = Food.find(params[:id])
+  end
 end
