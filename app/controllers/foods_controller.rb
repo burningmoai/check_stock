@@ -5,28 +5,18 @@ class FoodsController < ApplicationController
   def index
     @food_new = Food.new
     @category_new = Category.new
-    #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
-    # 複数形にするとallのような感じになる！！
-    @lists = current_user.lists.page(params[:page])
-    @stocks_limit = current_user.stocks.order(limit: "ASC")
-    # @stocks = current_user.stocks.page(params[:page])
-    @categories = current_user.categories
-      if params[:category_id]
-        @category = Category.find(params[:category_id])
-        @foods = @category.foods.page(params[:page]).per(10)
-      else
-        @foods = current_user.foods.page(params[:page]).per(10)
-      end
-    # list = List.find(list_params[:id])
-    # list.update(list_params)
-    # redirect_to foods_path, notice: "編集が完了しました"
+    set_index
   end
 
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-    @food.save!
+    if @food.save
       redirect_to request.referer,notice:"食材を登録しました!"
+    else
+      set_index
+      render :index
+    end
   end
 
   def destroy
@@ -61,5 +51,21 @@ private
 
   def set_food
     @food = Food.find(params[:id])
+  end
+
+  def set_index
+    #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
+    # 複数形にするとallのような感じになる！！
+     @food_new = Food.new
+    @lists = current_user.lists.limit(5)
+    @stocks_limit = current_user.stocks.order(limit: "ASC")
+    # @stocks = current_user.stocks.page(params[:page])
+    @categories = current_user.categories
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @foods = @category.foods.page(params[:page])
+      else
+        @foods = current_user.foods.page(params[:page])
+      end
   end
 end

@@ -2,7 +2,7 @@
   <%= link_to "#list_edit-item-#{list.food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "list_edit-item-#{list.food.id}", style: "z-index:3;" do %>
     <i class="fas fa-edit"></i>
   <% end %>
-<div class="collapse position-absolute" id="list_edit-item-<%= list.food.id %>" style="z-index:2;">
+<div class="collapse position-absolute" id="list_edit-item-<%= list.food.id %>" style="left:-90px; z-index:2;">
   <!--idをボタンごとに変えないと押していないところでも動いてしまう-->
     <div class="card card-body">
       <%= form_with(model: list, method: :patch,local: true) do |f| %>

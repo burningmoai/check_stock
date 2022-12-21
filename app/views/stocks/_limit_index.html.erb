@@ -13,7 +13,7 @@
         </td>
       <% elsif stock.limit - Time.zone.today == 1 %>
         <td style="width:70%;">
-          <span style="color: #C6D920;">期限前日です</span>
+          <span style="color: #ADBD1F;">期限前日です</span>
         </td>
       <% elsif stock.limit - Time.zone.today <= 14 %>
         <td style="width:70%;">
@@ -24,6 +24,11 @@
           <span>期限まであと2週間以上あります</span>
         </td>
       <% end %>
+        <td>
+          <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>

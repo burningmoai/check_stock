@@ -66,3 +66,36 @@
     background: #ddd;
   }
 }
+
+.btn-category{
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
+}
+
+.btn-category:hover{
+  color: white;
+  border-color: #D37904;
+  background-color: #D37904;
+}
+
+
+
+.page-item.active .page-link {
+  background-color:#ADBD1F;
+  border-color:#ADBD1F;
+  color:#FFF;
+}
+
+
+.page-link {
+  color:#ADBD1F;
+}
+
+.page-link:hover {
+  color:#96A31B;
+}
+
+a{
+  color:#ADBD1F;
+}

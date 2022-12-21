@@ -31,14 +31,14 @@ class StocksController < ApplicationController
 
   def index
     # @stocks = current_user.stocks.page(params[:page])
-    @lists = current_user.lists.page(params[:page])
+    @lists = current_user.lists.limit(5)
     @stocks_limit = current_user.stocks.order(limit: "ASC") #反映されず→気付いたら反映されていた！！！！！！
     @categories = Category.all
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @stocks = @category.stocks.page(params[:page]).per(10)
+        @stocks = @category.stocks.page(params[:page])
       else
-        @stocks = current_user.stocks.page(params[:page]).per(10)
+        @stocks = current_user.stocks.page(params[:page])
       end
 
     # @categories = Category.all

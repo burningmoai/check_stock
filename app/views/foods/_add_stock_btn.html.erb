@@ -1,6 +1,6 @@
 <div class="position-relative">
 <%= link_to "#stock_add-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "stock_add-item-#{food.id}", style: "z-index:1;" do %>
-  + <i class="fas fa-cubes"></i> 追加
+  <i class="fas fa-cubes"></i> 追加
 <% end %>
 <div class="collapse position-absolute" id="stock_add-item-<%= food.id %>" style="left:-145px; z-index:2;">
     <div class="card card-body">

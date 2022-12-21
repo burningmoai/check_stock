@@ -47,7 +47,7 @@
               </div>
             </td>
             <td>
-              <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-danger", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
+              <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </td>
@@ -55,7 +55,9 @@
         <% end %>
         </tbody>
       </table>
-      <%= paginate @stocks %>
+      <div class="row justify-content-center pb-5">
+        <%= paginate @stocks %>
+      </div>
 
       <div class="row justify-content-center">
         <div class="col-12">

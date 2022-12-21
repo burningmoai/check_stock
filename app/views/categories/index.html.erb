@@ -2,14 +2,18 @@
   <div class="row justify-content-center pb-3">
     <h3><i class="fas fa-align-justify mr-1"></i>カテゴリ一覧・追加</h3>
   </div>
-  <div class="row">
+  <div class="row pb-5">
     <div class="col-4 mt-3">
 
       <div>
         <h4>カテゴリの追加</h4>
         <%= form_with model: @category_new, url: categories_path, local:true do |f| %>
-          <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
-          <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary" %>
+          <div class="form-row justify-content-center align-items-baseline">
+            <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
+          </div>
+          <div class="form-row justify-content-center align-items-baseline">
+            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary m-1" %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -33,14 +37,16 @@
                         <%= f.label :name, "カテゴリ名" %>
                         <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
                       </div>
-                        <%= f.submit "編集内容を登録",class:"btn btn-sm btn-outline-secondary" %>
+                      <div class="form-row justify-content-center align-items-baseline m-1">
+                        <%= f.submit "編集内容を登録" %>
+                      </div>
                       <% end %>
                     </div>
                   </div>
                 </div>
               </td>
               <td style="width:35%;">
-                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
+                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               </td>

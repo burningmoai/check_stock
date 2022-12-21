@@ -1,4 +1,4 @@
-<%= link_to "ALL",stocks_path, class:"btn btn-sm btn-outline-secondary mx-1", style:"color: #EF8C04; border-color: #EF8C04;" %>
+<%= link_to "ALL",stocks_path, class:"btn btn-sm btn-outline-secondary mx-1 btn-category" %>
 <% categories.each do |category| %>
-  <%= link_to category.name,stocks_path(category_id: category.id), class:"btn btn-sm btn-outline-secondary mx-1", style:"color: #EF8C04; border-color: #EF8C04;" %>
+  <%= link_to category.name,stocks_path(category_id: category.id), class:"btn btn-sm btn-outline-secondary mx-1 btn-category" %>
 <% end %>

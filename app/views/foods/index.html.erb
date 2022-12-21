@@ -1,9 +1,17 @@
 <div class="container pb-5">
+<% if @food %>
+  <%= @food.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @food.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
   <div class="row"><!--全体を囲み横並びにするrow-->
     <!--お買いものリスト＆期限の部分テンプレート-->
     <div class="col-4 mt-3 pb-5">
-      <%= render 'homes/list_and_limit', lists: @lists,  list: @list, stocks: @stocks_limit, stock: @stock %>
+      <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks_limit %>
     </div>
 
     <div class="col-7 offset-1  pb-5"><!--追加した-->
@@ -46,7 +54,7 @@
                 <%= render "foods/add_list_btn", food: food %>
               </td>
               <td>
-                <%= link_to food_path(food.id),method: :delete, class:"btn btn-sm btn-danger", data:{confirm: "#{food.name}を削除しますか？"} do %>
+                <%= link_to food_path(food.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{food.name}を削除しますか？"} do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               </td>
