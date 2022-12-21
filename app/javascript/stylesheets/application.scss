@@ -66,7 +66,7 @@
     background: #ddd;
   }
 }
-
+// オレンジ
 .btn-category{
   color: #FFF;
   border-color: #EF8C04;
@@ -78,24 +78,40 @@
   border-color: #D37904;
   background-color: #D37904;
 }
-
-
-
+// ページネーションオレンジ
 .page-item.active .page-link {
-  background-color:#ADBD1F;
-  border-color:#ADBD1F;
-  color:#FFF;
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
 }
 
-
 .page-link {
-  color:#ADBD1F;
+  color:#EF8C04;
 }
 
 .page-link:hover {
-  color:#96A31B;
+  color:#D37904;
 }
+
+// 緑
+.btn-green{
+  color: #FFF;
+  border-color: #ADBD1F;
+  background-color: #ADBD1F;
+}
+
+.btn-green:hover{
+  color: #FFF;
+  border-color: #96A31B;
+  background-color: #96A31B;
+}
+
+
 
 a{
   color:#ADBD1F;
+}
+
+.alert{
+  color:#DC3545;
 }

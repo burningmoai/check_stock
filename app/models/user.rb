@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :categories, dependent: :destroy
 
   validates :name, presence: true
+  validates :email, presence: true
+
 
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|

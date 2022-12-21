@@ -1,6 +1,14 @@
 
 <%#= @stocks.inspect %>
 <div class="container pb-5">
+  <% if @stock %>
+    <%= @stock.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="row">
     <div class="col-4 mt-3 pb-5">
       <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks_limit %>

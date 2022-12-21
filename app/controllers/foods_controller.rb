@@ -3,8 +3,6 @@ class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit destroy update]
 
   def index
-    @food_new = Food.new
-    @category_new = Category.new
     set_index
   end
 
@@ -34,7 +32,8 @@ class FoodsController < ApplicationController
     if @food.update(food_params)
       redirect_to request.referer, notice: "編集が完了しました"
     else
-      render :index, notice: "保存できませんでした" #メッセージ表示できない
+      set_index
+      render :index
     end
   end
 private
@@ -56,16 +55,17 @@ private
   def set_index
     #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
     # 複数形にするとallのような感じになる！！
-     @food_new = Food.new
+    @food_new = Food.new
+    @category_new = Category.new
     @lists = current_user.lists.limit(5)
-    @stocks_limit = current_user.stocks.order(limit: "ASC")
+    @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5)
     # @stocks = current_user.stocks.page(params[:page])
     @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @foods = @category.foods.page(params[:page])
+        @foods = @category.foods.page(params[:page]).per(10)
       else
-        @foods = current_user.foods.page(params[:page])
+        @foods = current_user.foods.page(params[:page]).per(10)
       end
   end
 end

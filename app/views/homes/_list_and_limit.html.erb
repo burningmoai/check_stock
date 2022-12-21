@@ -39,7 +39,7 @@
 </table>
 <div class="row pb-3" style="justify-content:flex-end">
   <!--<span class="mx-3"><%#= paginate lists %></span>-->
-  <span><%= link_to "もっと見る", lists_path, class:"btn btn-sm btn-outline-secondary" %></span>
+  <span><%= link_to "すべて見る", lists_path, class:"btn btn-sm btn-outline-secondary btn-green" %></span>
 </div>
 <div class="row mt-3">
   <h3><i class="fas fa-hourglass-half mx-3"></i>期限一覧</h3>
@@ -47,6 +47,6 @@
 <div class="row">
   <%= render 'stocks/limit_index', stocks: stocks %>
   <div class="row pb-3" style="margin-left:auto;">
-    <%= link_to "もっと見る", food_limit_path, class:"btn btn-sm btn-outline-secondary" %>
+    <%= link_to "すべて見る", food_limit_path, class:"btn btn-sm btn-outline-secondary btn-category" %>
   </div>
 </div>

@@ -3,15 +3,18 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[destroy update]
 
   def index
-    @categories = current_user.categories
-    @category_new = Category.new
+    set_index
   end
 
   def create
     @category = Category.new(category_params)
     @category.user_id = current_user.id
-    @category.save
-    redirect_to categories_path, notice: "カテゴリが新規登録されました"
+    if @category.save
+      redirect_to categories_path, notice: "カテゴリが新規登録されました"
+    else
+      set_index
+      render :index
+    end
   end
 
   def destroy
@@ -33,5 +36,10 @@ private
 
   def set_category
     @category = Category.find(params[:id])
+  end
+
+  def set_index
+    @categories = current_user.categories
+    @category_new = Category.new
   end
 end
