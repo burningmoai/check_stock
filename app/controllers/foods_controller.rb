@@ -10,7 +10,7 @@ class FoodsController < ApplicationController
     @lists = current_user.lists.page(params[:page])
     @stocks_limit = current_user.stocks.order(limit: "ASC")
     # @stocks = current_user.stocks.page(params[:page])
-    @categories = Category.all
+    @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
         @foods = @category.foods.page(params[:page]).per(10)
@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-    @food.save
+    @food.save!
       redirect_to request.referer,notice:"食材を登録しました!"
   end
 

@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @stock = Stock.new
   end
@@ -12,7 +12,7 @@ class StocksController < ApplicationController
     if current_user.stocks.find_by(food_id: params[:stock][:food_id]).present? #同じ食材ある？
       stock = current_user.stocks.find_by(food_id: params[:stock][:food_id])
       stock.amount += params[:stock][:amount].to_i #stockパラムの数量を足す
-  binding.pry
+  # binding.pry
       if @stock.save #保存
         # logger.debug @deliver.errors.inspect
         redirect_to stocks_path, notice: "#{@stock.food.name}をストックに追加しました!"

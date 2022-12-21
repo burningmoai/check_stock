@@ -3,12 +3,13 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[destroy update]
 
   def index
-    @categories = Category.all #current_user.categoriesが反映できない！！！こいつのみ
+    @categories = current_user.categories
     @category_new = Category.new
   end
 
   def create
     @category = Category.new(category_params)
+    @category.user_id = current_user.id
     @category.save
     redirect_to categories_path, notice: "カテゴリが新規登録されました"
   end
