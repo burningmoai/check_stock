@@ -11,6 +11,8 @@
   </div>
   <div class="row justify-content-center pb-3">
     <h3><i class="fas fa-align-justify mr-1"></i>カテゴリ一覧・追加</h3>
+    <span class="mx-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
+    <span><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
   </div>
   <div class="row pb-5">
     <div class="col-4 mt-3">
@@ -22,7 +24,7 @@
             <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
           </div>
           <div class="form-row justify-content-center align-items-baseline">
-            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary m-1" %>
+            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-1" %>
           </div>
         <% end %>
       </div>

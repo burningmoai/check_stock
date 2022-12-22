@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_stock, only: %i[show edit destroy update]
 
   def new
     @stock = Stock.new
@@ -33,7 +34,7 @@ class StocksController < ApplicationController
     # @stocks = current_user.stocks.page(params[:page])
     @lists = current_user.lists.limit(5)
     @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5) #反映されず→気付いたら反映されていた！！！！！！
-    @categories = Category.all
+    @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
         @stocks = @category.stocks.page(params[:page]).per(10)
@@ -46,11 +47,9 @@ class StocksController < ApplicationController
   end
 
   def show
-    @stock = Stock.find(params[:id])
   end
 
   def edit
-    @stock = Stock.find(params[:id])
   end
 
   def limit
@@ -59,19 +58,21 @@ class StocksController < ApplicationController
   end
 
   def update
-    stock = Stock.find(params[:id])
     stock.update(stock_params)
     redirect_to request.referer, notice: "編集が完了しました"
   end
 
   def destroy
-    stock = Stock.find(params[:id])
     stock.destroy
-    redirect_to request.referer, notice: "ストックから削除しました"
+    redirect_to stocks_path, notice: "ストックから削除しました"
   end
 
 private
   def stock_params
     params.require(:stock).permit(:user_id, :food_id, :category_id, :amount, :unit, :buy_day, :limit, :memo)
+  end
+
+  def set_stock
+    @stock = Stock.find(params[:id])
   end
 end

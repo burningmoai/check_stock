@@ -66,14 +66,26 @@
     background: #ddd;
   }
 }
-// オレンジ
+// アウトラインオレンジ
 .btn-category{
+  border-color: #EF8C04;
+  color: #EF8C04;
+}
+
+.btn-category:hover{
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
+}
+// オレンジ
+.btn-orange{
+  margin-top:1px;
   color: #FFF;
   border-color: #EF8C04;
   background-color: #EF8C04;
 }
 
-.btn-category:hover{
+.btn-orange:hover{
   color: white;
   border-color: #D37904;
   background-color: #D37904;
@@ -111,7 +123,14 @@
 a{
   color:#ADBD1F;
 }
+a:hover{
+  color:#96A31B;
+}
 
 .alert{
   color:#DC3545;
+}
+
+h3, h4, b{
+  color:#EF8C04;
 }

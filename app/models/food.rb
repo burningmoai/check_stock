@@ -5,7 +5,7 @@ class Food < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?

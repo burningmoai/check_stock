@@ -1,9 +1,9 @@
 <div class="container pb-5">
   <div class="alert">
-    <% if @category %>
-      <%= @category.errors.count %>件のエラーが発生しました
+    <% if @user %>
+      <%= @user.errors.count %>件のエラーが発生しました
       <ul>
-        <% @category.errors.full_messages.each do |message| %>
+        <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

@@ -2,14 +2,14 @@
   <div class="row pb-5">
     <h3 class="col-4">ストックの詳細</h3>
     <div class="position-relative offset-2">
+      <span class="mx-3"><%= link_to "一覧へ戻る", stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
       <%= render "edit_amount_btn", stock: @stock %>
-
-    <span class="mx-3"><%= link_to "一覧へ戻る", stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
     <span>
-      <%= link_to stock_path(@stock.id),method: :delete, class:"btn btn-sm btn-danger", data:{confirm: "#{@stock.food.name}を削除しますか？"} do %>
+      <%= link_to stock_path(@stock.id),method: :delete, class:"btn btn-sm btn-secondary ml-3", data:{confirm: "#{@stock.food.name}を削除しますか？"} do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </span>
+
   </div>
   <table class="mt-3">
     <tr>
