@@ -1,12 +1,14 @@
 <div class="container pb-5">
-<% if @food %>
-  <%= @food.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @food.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="alert">
+  <% if @food %>
+    <%= @food.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @food.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
   <div class="row"><!--全体を囲み横並びにするrow-->
     <!--お買いものリスト＆期限の部分テンプレート-->

@@ -44,9 +44,6 @@ private
   def category_params
     params.require(:category).permit(:name)
   end
-  # def list_params
-  # params.require(:list).permit(:user_id, :food_id, :amount, :unit)
-  # end
 
   def set_food
     @food = Food.find(params[:id])
@@ -59,7 +56,6 @@ private
     @category_new = Category.new
     @lists = current_user.lists.limit(5)
     @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5)
-    # @stocks = current_user.stocks.page(params[:page])
     @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])

@@ -2,26 +2,26 @@
   <table class="table table">
     <tbody>
       <tr>
-        <td style="width:30%;"><%= stock.food.name %></td>
+        <td style="width:45%;"><%= stock.food.name %></td>
       <% if stock.limit - Time.zone.today < 0 %>
-        <td style="width:70%;">
+        <td style="width:55%;">
           <span class="text-danger">期限を過ぎています</span>
         </td>
       <% elsif stock.limit - Time.zone.today == 0 %>
-        <td style="width:70%;">
+        <td style="width:55%;">
           <span style="color: #EF8C04;">当日です</span>
         </td>
       <% elsif stock.limit - Time.zone.today == 1 %>
-        <td style="width:70%;">
+        <td style="width:55%;">
           <span style="color: #ADBD1F;">期限前日です</span>
         </td>
       <% elsif stock.limit - Time.zone.today <= 14 %>
-        <td style="width:70%;">
+        <td style="width:55%;">
           <span>あと<%= (stock.limit - Time.zone.today).to_i %> 日</span>
         </td>
       <% elsif stock.limit - Time.zone.today >= 14 %>
-        <td style="width:70%;">
-          <span>期限まであと2週間以上あります</span>
+        <td style="width:55%;">
+          <span>あと2週間以上あります</span>
         </td>
       <% end %>
 
