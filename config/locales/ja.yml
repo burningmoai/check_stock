@@ -19,7 +19,7 @@ ja:
         limit: 期限
         memo: 備考欄
       category:
-        name: カテゴリ
+        name: カテゴリ名
       list:
         amount: 個数/量
         unit: 単位

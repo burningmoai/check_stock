@@ -4,9 +4,8 @@ class Food < ApplicationRecord
   has_many :lists, dependent: :destroy
   belongs_to :user
   belongs_to :category
-  belongs_to :list
 
-  # validates :name, uniqueness: true, presence: truex
+  validates :name, presence: true
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?

@@ -6,8 +6,8 @@
       <th>食材</th>
       <th></th>
       <th class="text-nowrap text-center">編集</th>
+      <th class="text-nowrap text-center">追加</th>
       <th class="text-nowrap text-center">削除</th>
-      <th class="text-nowrap text-left">ストックへ</th>
     </tr>
   </thead>
 <% lists.each do |list| %>
@@ -18,64 +18,35 @@
       <td class="text-nowrap mx-3 text-left"><%= list.food.name %></td>
       <td><p>×<%= list.amount %></p>
 
-      <td class="text-right"><!--編集-->
+      <td><!--編集-->
         <%= render "lists/edit_amount_btn", list: list %>
-      </td>
-
-      <td><!--削除-->
-        <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
       </td>
 
       <td><!--ストック追加-->
         <%= render "lists/add_stock_btn", list: list %>
         <!--locals: { '部分テンプレート内で使う変数': '変数に入れる値'}  , locals:{ 'model': 'list.food.stocks.build' }-->
       </td>
+      <td><!--削除-->
+        <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+
+
     </tr>
   </tbody>
 <% end %>
 </table>
-<%= paginate lists %>
-
-<div class="row pb-3">
-  <%= link_to "もっと見る", lists_path, class:"btn btn-sm btn-outline-secondary" %>
+<div class="row pb-3" style="justify-content:flex-end">
+  <!--<span class="mx-3"><%#= paginate lists %></span>-->
+  <span><%= link_to "すべて見る", lists_path, class:"btn btn-sm btn-outline-secondary btn-green" %></span>
 </div>
 <div class="row mt-3">
-  <h3><i class="fas fa-hourglass-half mx-3"></i>期限が間近の食材</h3>
+  <h3><i class="fas fa-hourglass-half mx-3"></i>期限一覧</h3>
 </div>
-<div class="row pb-5">
-  <% stocks.each do |stock| %>
-  <%# binding.pry %>
-    <% if stock.limit - Time.zone.today <= 14 %>
-    <table class="table table-hover">
-      <tbody>
-        <tr>
-          <td><%= stock.food.name %></td>
-          <td>あと<%= (stock.limit - Time.zone.today).to_i %> 日</td>
-        </tr>
-      </tbody>
-    </table>
-    <% elsif stock.limit - Time.zone.today >= 14 %>
-    <table class="table table-hover">
-      <tbody>
-        <tr>
-          <td><%= stock.food.name %></td>
-          <td>期限まであと2週間以上あります</td>
-        </tr>
-      </tbody>
-    </table>
-    <% else %>
-    <table class="table table-hover">
-      <tbody>
-        <tr>
-          <td><%= stock.food.name %></td>
-          <td>期限を過ぎています</td>
-        </tr>
-      </tbody>
-    </table>
-    <% end %>
-
-  <% end %>
-  <%#= paginate stocks %>
+<div class="row">
+  <%= render 'stocks/limit_index', stocks: stocks %>
+  <div class="row pb-3" style="margin-left:auto;">
+    <%= link_to "すべて見る", food_limit_path, class:"btn btn-sm btn-outline-secondary btn-green" %>
+  </div>
 </div>

@@ -1,32 +1,73 @@
 <div class="container pb-5">
-  <div class="row">
-    <div class="col-6 mt-3">
-      <h3>カテゴリ一覧・追加</h3>
-        <div>
-          <h4>カテゴリの追加</h4>
-          <%= form_with model: @category, url: categories_path, local:true do |f| %>
-            <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
-            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary" %>
-          <% end %>
-        </div>
-        <div>
-          <h4>食材一覧</h4>
-          <% @categories.each do |category| %>
-            <table>
-              <tbody>
-                <tr>
-                  <td><%= category.name %></td>
-                  <td>
-                    <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-outline-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          <% end %>
-        </div>
+  <div class="alert">
+    <% if @category %>
+      <%= @category.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="row justify-content-center pb-3">
+    <h3><i class="fas fa-align-justify mr-1"></i>カテゴリ一覧・追加</h3>
+    <span class="mx-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
+    <span><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
+  </div>
+  <div class="row pb-5">
+    <div class="col-4 mt-3">
 
+      <div>
+        <h4>カテゴリの追加</h4>
+        <%= form_with model: @category_new, url: categories_path, local:true do |f| %>
+          <div class="form-row justify-content-center align-items-baseline">
+            <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
+          </div>
+          <div class="form-row justify-content-center align-items-baseline">
+            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-1" %>
+          </div>
+        <% end %>
+      </div>
     </div>
+    <div class="col-8 mt-3 pb-5">
+      <h4>カテゴリ一覧</h4>
+      <% @categories.each do |category| %>
+        <table class="table table">
+          <tbody>
+            <tr>
+              <td style="width:30%;"><%= category.name %></td>
+              <td style="width:35%;">
+                <div class="position-relative">
+                  <%= link_to "#category_edit-item-#{category.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "category_edit-item-#{category.id}", style: "z-index:1;" do %>
+                    <i class="fas fa-edit"></i>
+                  <% end %>
+                <div class="collapse position-absolute" id="category_edit-item-<%= category.id %>" style="z-index:2;">
+                  <!--idをボタンごとに変えないと押していないところでも動いてしまう-->
+                    <div class="card card-body">
+                      <%= form_with model: category, method: :patch,local: true do |f| %>
+                      <div class="form-row align-items-baseline">
+                        <%= f.label :name, "カテゴリ名" %>
+                        <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
+                      </div>
+                      <div class="form-row justify-content-center align-items-baseline m-1">
+                        <%= f.submit "編集内容を登録" %>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td style="width:35%;">
+                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="position-relative">
-  <%= link_to "#food_edit-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "food_edit-item-#{food.id}", style: "z-index:1;" do %>
+  <%= link_to "#food_edit-item-#{food.id}", class:"btn btn-sm btn-outline-secondary", "data-toggle": "collapse", role: "button", "aria-expanded": "false", "area-controls": "food_edit-item-#{food.id}", style: "z-index:3;" do %>
     <i class="fas fa-edit"></i>
   <% end %>
 <div class="collapse position-absolute" id="food_edit-item-<%= food.id %>" style="z-index:2;">
@@ -15,7 +15,7 @@
       </div>
       <!--ここから単位-->
       <!--単位終わり-->
-        <%= f.submit "編集内容を登録",class:"btn btn-sm btn-outline-secondary" %>
+        <%= f.submit "編集内容を登録",class:"btn btn-sm btn-orange mt-1" %>
       <% end %>
     </div>
   </div>

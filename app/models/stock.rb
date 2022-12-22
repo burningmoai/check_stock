@@ -5,6 +5,7 @@ class Stock < ApplicationRecord
 
   validates :amount, presence: true
   validates :limit, presence: true
+  validates :buy_day, presence: true
 
   enum unit: { ko: 0, hon: 1, fukuro: 2, tama: 3, mai: 4 }
 

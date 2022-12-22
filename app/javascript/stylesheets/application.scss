@@ -53,7 +53,7 @@
   }
 
   .today {
-    background: #ffffc0;
+    background: #EAF2AE;
   }
 
   .prev-month {
@@ -65,4 +65,72 @@
     color: #737373;
     background: #ddd;
   }
+}
+// アウトラインオレンジ
+.btn-category{
+  border-color: #EF8C04;
+  color: #EF8C04;
+}
+
+.btn-category:hover{
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
+}
+// オレンジ
+.btn-orange{
+  margin-top:1px;
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
+}
+
+.btn-orange:hover{
+  color: white;
+  border-color: #D37904;
+  background-color: #D37904;
+}
+// ページネーションオレンジ
+.page-item.active .page-link {
+  color: #FFF;
+  border-color: #EF8C04;
+  background-color: #EF8C04;
+}
+
+.page-link {
+  color:#EF8C04;
+}
+
+.page-link:hover {
+  color:#D37904;
+}
+
+// 緑
+.btn-green{
+  color: #FFF;
+  border-color: #ADBD1F;
+  background-color: #ADBD1F;
+}
+
+.btn-green:hover{
+  color: #FFF;
+  border-color: #96A31B;
+  background-color: #96A31B;
+}
+
+
+
+a{
+  color:#ADBD1F;
+}
+a:hover{
+  color:#96A31B;
+}
+
+.alert{
+  color:#DC3545;
+}
+
+h3, h4, b{
+  color:#EF8C04;
 }
