@@ -37,11 +37,6 @@
         <% else %><!--見るだけの人-->
           <ul class="navbar-nav ml-auto">
             <li>
-              <%= link_to about_path,class: 'nav-link text-nowrap text-light' do %>
-                <p style="color:#EF8C04;"><i class="fas fa-question-circle"></i> ABOUT</p>
-              <% end %>
-            </li>
-            <li>
               <%= link_to new_user_registration_path,class: 'nav-link text-nowrap text-light' do %>
                 <p style="color:#EF8C04;"><i class="fas fa-user-plus"></i> 新規登録</p>
               <% end %>

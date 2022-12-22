@@ -7,11 +7,11 @@ class Stock < ApplicationRecord
   validates :limit, presence: true
   validates :buy_day, presence: true
 
-  enum unit: { ko: 0, hon: 1, fukuro: 2, tama: 3, mai: 4 }
+  # enum unit: { ko: 0, hon: 1, fukuro: 2, tama: 3, mai: 4 }
 
-  def quantity
-    amount.to_s + unit
-  end
+  # def quantity
+  #   amount.to_s + unit
+  # end
 
   def start_time
     self.limit

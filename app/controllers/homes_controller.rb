@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
-  before_action :authenticate_user!
-  
+  skip_before_action :authenticate_user!
+  # ログイン前でもトップページが見れる
+
   def top
   end
 
