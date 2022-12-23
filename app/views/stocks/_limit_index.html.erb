@@ -2,7 +2,7 @@
   <table class="table table">
     <tbody>
       <tr>
-        <td style="width:45%;"><%= stock.food.name %></td>
+        <td class="text-left" style="width:45%;"><%= stock.food.name %></td>
       <% if stock.limit - Time.zone.today < 0 %>
         <td style="width:55%;">
           <span class="text-danger">期限を過ぎています</span>

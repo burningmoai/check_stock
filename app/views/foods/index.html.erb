@@ -43,16 +43,16 @@
                 <td id="like_btn_<%= food.id %>">
                   <%= render "likes/btn", food: food %>
                 </td>
-                <td>
+                <td class="text-left">
                   <%= link_to food_path(food.id) do %>
                     <%= food.name %>
                   <% end %>
                   <p class="col-1 text-nowrap">在庫:<%= food.stocks.any? ? "○" : "×" %></p>
                 </td>
-                <td class="text-center">
+                <td>
                   <%= render "foods/add_stock_btn", food: food %>
                 </td>
-                <td class="text-center">
+                <td>
                   <%= render "foods/add_list_btn", food: food %>
                 </td>
                 <td>
