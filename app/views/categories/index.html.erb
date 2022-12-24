@@ -58,7 +58,7 @@
                 </div>
               </td>
               <td style="width:35%;">
-                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
+                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除した場合、紐づいている食材/ストックも消えてしまいます。カテゴリを削除しますか？"} do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               </td>
