@@ -11,13 +11,22 @@
 
         <% if user_signed_in? %><!--会員-->
         <p class="ml-1 font-orange" style="text-left">おつかれさま、<br><%= current_user.name %>さん!</p>
-
+        <div><!--マイページ・ログアウト/他の4つと2段にしたーーーーい-->
           <ul class="navbar-nav ml-auto">
             <li>
               <%= link_to user_path(current_user),class: 'nav-link text-nowrap text-light' do %>
                 <p class="font-orange"><i class="fas fa-info-circle"></i> マイページ</p>
               <% end %>
             </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-nowrap text-light',data:{confirm: "ログアウトしますか？"} do %>
+                <p class="font-orange"><i class="fas fa-sign-out-alt"></i> ログアウト</p>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul class="navbar-nav ml-auto">
             <li>
               <%=  link_to foods_path,class: 'nav-link text-nowrap text-light' do %>
                 <p class="font-orange"><i class="fas fa-carrot"></i> 食材一覧</p>
@@ -29,11 +38,17 @@
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-nowrap text-light',data:{confirm: "ログアウトしますか？"} do %>
-                <p class="font-orange"><i class="fas fa-sign-out-alt"></i> ログアウト</p>
+              <%=  link_to lists_path ,class: 'nav-link text-nowrap text-light' do %>
+                <p class="font-orange"><i class="fas fa-clipboard-list"></i> お買いものリスト</p>
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to food_limit_path ,class: 'nav-link text-nowrap text-light' do %>
+                <p class="font-orange"><i class="fas fa-hourglass-half"></i> 期限一覧</p>
               <% end %>
             </li>
           </ul>
+        </div>
         <% else %><!--見るだけの人-->
           <ul class="navbar-nav ml-auto">
             <li>
