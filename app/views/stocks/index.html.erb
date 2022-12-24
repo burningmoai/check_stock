@@ -46,8 +46,8 @@
               <% end %>
             </td>
             <td class="mx-5"><p>×<%= stock.amount.to_s %></p></td>
-            <td class="mx-5 text-center"><%= stock.buy_day.strftime('%Y/%m/%d') %></td>
-            <td class="mx-5 text-center"><%= stock.limit.strftime('%Y/%m/%d') %></td>
+            <td class="mx-5"><%= stock.buy_day.strftime('%Y/%m/%d') %></td>
+            <td class="mx-5"><%= stock.limit.strftime('%Y/%m/%d') %></td>
             <td class="mx-5 text-left"><%= stock.memo %></td>
             <td>
               <div class="position-relative">

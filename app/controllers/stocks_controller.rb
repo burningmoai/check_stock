@@ -37,7 +37,7 @@ class StocksController < ApplicationController
   end
 
   def limit
-    @stocks = current_user.stocks.order(limit: "ASC") #期限の小さい順(昇順)
+    @stocks = current_user.stocks.page(params[:page]).per(10).order(limit: "ASC") #期限の小さい順(昇順)
     @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
 

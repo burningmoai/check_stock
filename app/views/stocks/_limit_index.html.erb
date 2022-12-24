@@ -24,8 +24,13 @@
           <span>あと2週間以上あります</span>
         </td>
       <% end %>
-
+        <td>
+          <%= link_to stock_path(stock.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{stock.food.name}を削除しますか？"} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
+  <%#= paginate limit %>
 <% end %>

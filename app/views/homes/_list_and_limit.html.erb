@@ -5,14 +5,12 @@
     <tr>
       <th>食材</th>
       <th></th>
-      <th class="text-nowrap text-center">編集</th>
-      <th class="text-nowrap text-center">追加</th>
-      <th class="text-nowrap text-center">削除</th>
+      <th class="text-nowrap">編集</th>
+      <th class="text-nowrap">追加</th>
+      <th class="text-nowrap">削除</th>
     </tr>
   </thead>
 <% lists.each do |list| %>
-
-
   <tbody>
     <tr>
       <td class="text-nowrap mx-3 text-left"><%= list.food.name %></td>
@@ -24,22 +22,20 @@
 
       <td><!--ストック追加-->
         <%= render "lists/add_stock_btn", list: list %>
-        <!--locals: { '部分テンプレート内で使う変数': '変数に入れる値'}  , locals:{ 'model': 'list.food.stocks.build' }-->
       </td>
       <td><!--削除-->
         <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>
-
-
     </tr>
   </tbody>
 <% end %>
 </table>
-<div class="row pb-3" style="justify-content:flex-end">
-  <!--<span class="mx-3"><%#= paginate lists %></span>-->
-  <span><%= link_to "すべて見る", lists_path, class:"btn btn-sm btn-outline-secondary btn-green" %></span>
+<div class="row">
+  <div class="row pb-3" style="margin-left:auto;">
+    <%= link_to "すべて見る", lists_path, class:"btn btn-sm btn-outline-secondary btn-green" %>
+  </div>
 </div>
 <div class="row mt-3">
   <h3><i class="fas fa-hourglass-half mx-3"></i>期限一覧</h3>

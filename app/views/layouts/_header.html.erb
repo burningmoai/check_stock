@@ -29,7 +29,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-nowrap text-light' do %>
+              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-nowrap text-light',data:{confirm: "ログアウトしますか？"} do %>
                 <p class="font-orange"><i class="fas fa-sign-out-alt"></i> ログアウト</p>
               <% end %>
             </li>

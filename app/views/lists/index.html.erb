@@ -4,15 +4,15 @@
     <span class="mx-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
     <span><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
   </div>
-  <div class="row justify-content-center mt-3 pb-5">
+  <div class="row justify-content-center mt-3 mb-5 pb-5">
     <table class="table table-hover" style="width:50%;">
       <thead>
         <tr>
           <th>食材</th>
           <th></th>
           <th>編集</th>
-          <th class="text-nowrap text-center">追加</th>
-          <th class="text-nowrap text-center">削除</th>
+          <th class="text-nowrap">追加</th>
+          <th class="text-nowrap">削除</th>
         </tr>
       </thead>
     <% @lists.each do |list| %>
@@ -20,14 +20,14 @@
         <tr>
           <td class="text-nowrap mx-3 text-left"><%= list.food.name %></td>
           <td><p>×<%= list.amount %></p>
-          <td class="text-center"><!--編集-->
+          <td><!--編集-->
             <%= render "lists/edit_amount_btn", list: list %>
           </td>
-          <td class="text-center"><!--ストック追加-->
+          <td><!--ストック追加-->
             <%= render "lists/add_stock_btn", list: list %>
             <!--locals: { '部分テンプレート内で使う変数': '変数に入れる値'}  , locals:{ 'model': 'list.food.stocks.build' }-->
           </td>
-          <td class="text-center"><!--削除-->
+          <td><!--削除-->
             <%= link_to list_path(list.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "#{list.food.name}を削除しますか？"} do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
