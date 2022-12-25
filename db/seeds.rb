@@ -25,13 +25,20 @@
 # end
 
 # カテゴリ
-categories = %w(野菜類 肉類)
-categories.each do |category|
-  Category.create(
-      name: category,
-      # user_id: current_user.id
-    )
-end
+# categories = Category.create!(
+#   [
+#     {name: '野菜類', user_id: current_user.id},
+#     {name: '肉類', user_id: current_user.id}
+#   ]
+# )
+
+# Food.create!(
+#   [
+#     {name: "キャベツ", category_id: categories[0].id, user_id: current_user.id},
+#     {name: "にんじん", category_id: categories[0].id, user_id: current_user.id},
+#     {name: "ささみ", category_id: categories[1].id, user_id: current_user.id}
+#   ]
+# )
 # Category.create!(name: '主食', user_id: "1")
 # Category.create!(name: '野菜類', user_id: "1")
 # Category.create!(name: '主食', user_id: "1")
@@ -91,19 +98,59 @@ end
 # ----- ゲストユーザーのカテゴリーデータ登録 -----
 categories = %w(野菜類 肉類 その他)
 categories.each do |category|
-  Category.create(
+  Category.find_or_create_by(
       name: category,
       user_id: guest.id
     )
 end
 
 # 食材
-foods = [
-  {name: "キャベツ", category_id: 1, user_id: guest.id},
-  {name: "にんじん", category_id: 1, user_id: guest.id},
-  {name: "ささみ", category_id: 2, user_id: guest.id}
-  ]
-
+# Food.create!(
+#   [
+#     {name: "キャベツ", category_id: categories[0].id, user_id: guest.id},
+#     {name: "にんじん", category_id: categories[0].id, user_id: guest.id},
+#     {name: "ささみ", category_id: categories[1].id, user_id: guest.id}
+#   ]
+# )
+foods = %w(キャベツ にんじん)
 foods.each do |food|
-  Food.find_or_create_by(food)
+  Food.find_or_create_by(
+      name: food,
+      category_id: 1,
+      user_id: guest.id
+    )
 end
+
+List.find_or_create_by(
+    user_id: guest.id,
+    food_id: 1,
+    amount: 1,
+  )
+
+# Stock.find_or_create_by(
+#     user_id: guest.id,
+#     food_id: 2,
+#     category_id: 1,
+#     amount: 3,
+#     buy_day: 2022-12-25,
+#     limit: 2023-01-30,
+#     memo: '千葉県産'
+#   )
+
+# foods.each do |food|
+#   Food.find_or_create_by(food)
+# end
+# foods = [
+#   {id:3, name: "キャベツ", category_id: 2},
+#   {id:4, name: "にんじん", category_id: 2},
+#   {id:5, name: "ささみ", category_id: 3},
+#   {id:6, name: "カニ", category_id: 4},
+#   {id:7, name: "クミン", category_id: 5},
+#   {id:8, name: "ターメリック", category_id: 5},
+#   {id:9, name: "チリペッパー", category_id: 5},
+#   {id:10, name: "おっとっと", category_id: 6},
+#   {id:11, name: "プロテイン", category_id: 7},
+#   ]
+# foods.each do |food|
+#   Food.find_or_create_by(food)
+# end
