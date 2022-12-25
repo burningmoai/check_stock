@@ -11,8 +11,8 @@
 </div>
 
   <div class="row"><!--全体を囲み横並びにするrow-->
-    <!--お買いものリスト＆期限の部分テンプレート-->
-    <div class="d-sm-none d-md-block col-md-4 mt-3 pb-5"><!--ここで非表示にしてヘッダーにリンクつけたい！！！！！！！！！！！！１-->
+    <!--お買いものリスト&期限一覧はスマホサイズは非表示にしてヘッダーからアクセスさせる-->
+    <div class="d-none d-lg-block col-md-4 mt-3 pb-5">
       <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks_limit %>
     </div>
 

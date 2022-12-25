@@ -10,23 +10,21 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
         <% if user_signed_in? %><!--会員-->
-        <p class="ml-1 font-orange" style="text-left">おつかれさま、<br><%= current_user.name %>さん!</p>
-        <div><!--マイページ・ログアウト/他の4つと2段にしたーーーーい-->
-          <ul class="navbar-nav ml-auto">
+        <p class="ml-1 text-nowrap" style="color:#EF8C04; text-left">おつかれさま、<br><%= current_user.name %>さん!</p>
+        <div><!--マイページ・ログアウト/他の4つと2段にしたい-->
+          <ul class="navbar-nav pl-5 ml-5">
             <li>
               <%= link_to user_path(current_user),class: 'nav-link text-nowrap text-light' do %>
-                <p class="font-orange"><i class="fas fa-info-circle"></i> マイページ</p>
+                <p class="font-green"><i class="fas fa-info-circle"></i> マイページ</p>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-nowrap text-light',data:{confirm: "ログアウトしますか？"} do %>
-                <p class="font-orange"><i class="fas fa-sign-out-alt"></i> ログアウト</p>
+                <p class="font-green"><i class="fas fa-sign-out-alt"></i> ログアウト</p>
               <% end %>
             </li>
           </ul>
-        </div>
-        <div>
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav pl-5 ml-5">
             <li>
               <%=  link_to foods_path,class: 'nav-link text-nowrap text-light' do %>
                 <p class="font-orange"><i class="fas fa-carrot"></i> 食材一覧</p>
@@ -37,14 +35,15 @@
                 <p class="font-orange"><i class="fas fa-cubes"></i> <%= current_user.name %>家のストック</p>
               <% end %>
             </li>
+            <!--下2つはlgサイズより大きくなったら表示-->
             <li>
               <%=  link_to lists_path ,class: 'nav-link text-nowrap text-light' do %>
-                <p class="font-orange"><i class="fas fa-clipboard-list"></i> お買いものリスト</p>
+                <p class="font-orange d-lg-none"><i class="fas fa-clipboard-list"></i> お買いものリスト</p>
               <% end %>
             </li>
             <li>
               <%=  link_to food_limit_path ,class: 'nav-link text-nowrap text-light' do %>
-                <p class="font-orange"><i class="fas fa-hourglass-half"></i> 期限一覧</p>
+                <p class="font-orange d-lg-none"><i class="fas fa-hourglass-half"></i> 期限一覧</p>
               <% end %>
             </li>
           </ul>

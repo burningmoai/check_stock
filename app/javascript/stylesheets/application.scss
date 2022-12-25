@@ -145,6 +145,16 @@ h3, h4, b{
 .font-orange{
   color:#EF8C04;
 }
+.font-orange:hover{
+  color: #D37904;
+}
+
+.font-green{
+  color:#ADBD1F;
+}
+.font-green:hover{
+  color: #96A31B;
+}
 
 .table thead th {
   text-align:center;
@@ -157,3 +167,11 @@ h3, h4, b{
 .table tbody td {
   text-align:center;
 }
+// .navbar-nav{
+//   display:flex;
+//   justify-content:flex-end;
+// }
+// .nav2{
+//   display:flex;
+//   justify-content:center;
+// }

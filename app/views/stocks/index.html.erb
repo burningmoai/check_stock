@@ -10,7 +10,8 @@
     </ul>
   <% end %>
   <div class="row">
-    <div class="col-md-4 mt-3 pb-5">
+    <!--お買いものリスト&期限一覧はスマホサイズは非表示にしてヘッダーからアクセスさせる-->
+    <div class="d-none d-lg-block col-md-4 mt-3 pb-5">
       <%= render 'homes/list_and_limit', lists: @lists, stocks: @stocks_limit %>
     </div>
 

@@ -15,7 +15,7 @@
     <span><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
   </div>
   <div class="row pb-5 mb-5">
-    <div class="col-4 mt-3">
+    <div class="col-md-4 mt-3">
 
       <div>
         <h4>カテゴリの追加</h4>
@@ -24,12 +24,12 @@
             <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
           </div>
           <div class="form-row justify-content-center align-items-baseline">
-            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-1" %>
+            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-3" %>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="col-8 mt-3 pb-5">
+    <div class="col-md-8 mt-3 pb-5">
       <h4>カテゴリ一覧</h4>
       <% @categories.each do |category| %>
         <table class="table table">
