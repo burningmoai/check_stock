@@ -14,11 +14,24 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.build(list_params)
-    if @list.save
-      redirect_to foods_path, notice: "#{@list.food.name}をお買いものリストに追加しました!"
+
+    if current_user.lists.find_by(food_id: params[:list][:food_id]).present?
+      @list = current_user.lists.find_by(food_id: params[:list][:food_id])
+      @list.amount += params[:list][:amount].to_i
+
+      if @list.save
+        redirect_to foods_path, notice: "#{@list.food.name}をお買いものリストに追加しました!"
+      else
+        flash[:alert] = "内容に不備があります"
+        redirect_to foods_path
+      end
     else
-      flash[:alert] = "内容に不備があります"
-      redirect_to foods_path
+      if @list.save
+        redirect_to foods_path, notice: "#{@list.food.name}をお買いものリストに追加しました!"
+      else
+        flash[:alert] = "内容に不備があります"
+        redirect_to foods_path
+      end
     end
   end
 
@@ -36,7 +49,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to request.referer, notice: "#{list.food.name}をお買いものリストから削除しました"
+    redirect_to lists_path, notice: "#{@list.food.name}をお買いものリストから削除しました"
   end
 
 private

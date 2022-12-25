@@ -14,8 +14,8 @@
     <span class="mx-3"><%= link_to "食材一覧へ",foods_path, class:"btn btn-sm btn-outline-secondary" %></span>
     <span><%= link_to "ストック一覧へ",stocks_path, class:"btn btn-sm btn-outline-secondary" %></span>
   </div>
-  <div class="row pb-5">
-    <div class="col-4 mt-3">
+  <div class="row pb-5 mb-5">
+    <div class="col-md-4 mt-3">
 
       <div>
         <h4>カテゴリの追加</h4>
@@ -24,12 +24,12 @@
             <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
           </div>
           <div class="form-row justify-content-center align-items-baseline">
-            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-1" %>
+            <%= f.submit "カテゴリを登録",class:"btn btn-sm btn-outline-secondary btn-green m-3" %>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="col-8 mt-3 pb-5">
+    <div class="col-md-8 mt-3 pb-5">
       <h4>カテゴリ一覧</h4>
       <% @categories.each do |category| %>
         <table class="table table">
@@ -50,7 +50,7 @@
                         <%= f.text_field :name, autocomplete: "name",placeholder: 'カテゴリ名を入力' %>
                       </div>
                       <div class="form-row justify-content-center align-items-baseline m-1">
-                        <%= f.submit "編集内容を登録" %>
+                        <%= f.submit "編集内容を登録",class:"btn btn-sm btn-outline-secondary btn-green m-1" %>
                       </div>
                       <% end %>
                     </div>
@@ -58,7 +58,7 @@
                 </div>
               </td>
               <td style="width:35%;">
-                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除しますか？"} do %>
+                <%= link_to category_path(category.id),method: :delete, class:"btn btn-sm btn-secondary", data:{confirm: "カテゴリを削除した場合、紐づいている食材/ストックも消えてしまいます。カテゴリを削除しますか？"} do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               </td>

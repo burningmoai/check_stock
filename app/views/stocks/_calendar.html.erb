@@ -2,7 +2,9 @@
   <%= date.day %>
   <% stocks.each do |stock| %>
     <div style="font-size:12px;">
-      <%= stock.food.name %>
+      <%= link_to stock_path(stock.id) do %>
+        <%= stock.food.name %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
