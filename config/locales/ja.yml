@@ -18,6 +18,7 @@ ja:
         buy_day: 購入日
         limit: 期限
         memo: 備考欄
+        category: カテゴリ名
       category:
         name: カテゴリ名
       list:
