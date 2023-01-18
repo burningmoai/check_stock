@@ -4,6 +4,7 @@ class FoodsController < ApplicationController
 
   def index
     set_index
+    # @liked_food = Food.joins(:likes).where(likes: { user: @user } ) いいね絞り込み表示したい
   end
 
   def create
