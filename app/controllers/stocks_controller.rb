@@ -11,8 +11,10 @@ class StocksController < ApplicationController
       if @stock.save
         redirect_to stocks_path, notice: "#{@stock.food.name}をストックに追加しました!"
       else
-        flash[:alert] = "内容に不備があります"
-        redirect_to foods_path
+        # flash[:alert] = "内容に不備があります"
+        # redirect_to foods_path
+        set_food_index
+        render :index
         #render :indexだと food controllerのindexと同じ変数が必要だったけどコントローラを跨ぐことになるのでリダイレクトで対応
       end
   end
@@ -62,6 +64,20 @@ private
 
   def set_stock
     @stock = Stock.find(params[:id])
+  end
+
+  def set_food_index #foods controllerのindexから持ってきた・・・
+    @food_new = Food.new
+    @category_new = Category.new
+    @lists = current_user.lists.limit(5)
+    @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5)
+    @categories = current_user.categories
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @foods = @category.foods.page(params[:page]).per(10)
+      else
+        @foods = current_user.foods.page(params[:page]).per(10)
+      end
   end
 
 end

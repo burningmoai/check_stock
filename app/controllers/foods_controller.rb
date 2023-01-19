@@ -5,6 +5,10 @@ class FoodsController < ApplicationController
   def index
     set_index
     # @liked_food = Food.joins(:likes).where(likes: { user: @user } ) いいね絞り込み表示したい
+    # @user = User.find(params[:id])
+    likes = Like.where(user_id: current_user.id).pluck(:food_id)
+    @liked_food = Food.find(likes)
+
   end
 
   def create
