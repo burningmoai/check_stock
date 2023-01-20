@@ -26,7 +26,7 @@ private
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_path(current_user) , alert: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 
@@ -34,7 +34,7 @@ private
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to root_path, notice: '他のユーザーの情報は編集できません。'
+      redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
     end
   end
 
