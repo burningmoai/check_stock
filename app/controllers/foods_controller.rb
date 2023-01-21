@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_food, only: %i[show edit destroy update]
+  before_action :is_matching_login_user, only: %i[edit update]
 
   def index
     set_index
@@ -72,4 +73,13 @@ private
         @foods = current_user.foods.page(params[:page]).per(10)
       end
   end
+
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    login_user_id = current_user.id
+    if(user_id != login_user_id)
+      redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
+    end
+  end
+
 end

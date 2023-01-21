@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, only: %i[edit destroy update]
+  before_action :is_matching_login_user, only: %i[edit update]
 
   def index
     @lists = current_user.lists
@@ -53,11 +54,20 @@ class ListsController < ApplicationController
   end
 
 private
- def list_params
-   params.require(:list).permit(:user_id, :food_id, :amount, :unit)
- end
+  def list_params
+    params.require(:list).permit(:user_id, :food_id, :amount, :unit)
+  end
 
- def set_list
-   @list = List.find(params[:id])
- end
+  def set_list
+    @list = List.find(params[:id])
+  end
+
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    login_user_id = current_user.id
+    if(user_id != login_user_id)
+      redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
+    end
+  end
+
 end
