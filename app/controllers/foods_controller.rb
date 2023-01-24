@@ -69,7 +69,7 @@ private
     @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @foods = @category.foods.page(params[:page]).per(10)
+        @foods = @category.foods.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
       else
         @foods = current_user.foods.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
       end
