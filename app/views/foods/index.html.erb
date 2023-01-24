@@ -7,6 +7,20 @@
         <li><%= message %></li>
       <% end %>
     </ul>
+  <% elsif @stock %>
+    <%= @stock.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% elsif @list %>
+    <%= @list.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
 
@@ -31,8 +45,8 @@
         <div class="row justify-content-center pb-5">
           <%= link_to "お気に入り食材",foods_path(@liked_food) %>｜
           <%= link_to "期限順",foods_path %>｜
-          <%= sort_order "created_at", "登録順"%>
-          <%= sort_order "category_id", "カテゴリ順"%>
+          <%#= sort_order "created_at", "登録順"%>
+          <%#= sort_order "category_id", "カテゴリ順"%>
 
           <table class="table table-hover justify-content-center mx-5 pb-5">
             <tr>

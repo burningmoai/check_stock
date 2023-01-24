@@ -13,11 +13,8 @@ class StocksController < ApplicationController
       if @stock.save
         redirect_to stocks_path, notice: "#{@stock.food.name}をストックに追加しました!"
       else
-        # flash[:alert] = "内容に不備があります"
-        # redirect_to foods_path
         set_food_index
-        render :index
-        #render :indexだと food controllerのindexと同じ変数が必要だったけどコントローラを跨ぐことになるのでリダイレクトで対応
+        render "foods/index"
       end
   end
 
