@@ -60,8 +60,6 @@ private
   end
 
   def set_index
-    #@foods = Food.all　これは他のユーザーが現れた場合表示されてしまうからcurrent_user必須
-    # 複数形にするとallのような感じになる！！
     @food_new = Food.new
     @category_new = Category.new
     @lists = current_user.lists.limit(5)

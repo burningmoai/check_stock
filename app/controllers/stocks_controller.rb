@@ -19,16 +19,7 @@ class StocksController < ApplicationController
   end
 
   def index
-    @lists = current_user.lists.limit(5)
-    @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5)
-    @categories = current_user.categories
-      if params[:category_id]
-        @category = Category.find(params[:category_id])
-        @stocks = @category.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
-      else
-        @stocks = current_user.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
-      end
-    @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
+    set_index
   end
 
   def show
@@ -46,8 +37,9 @@ class StocksController < ApplicationController
     if @stock.update(stock_params)
       redirect_to request.referer, notice: "編集が完了しました"
     else
-      flash[:alert] = "内容に不備があります"
-      redirect_to request.referer
+      set_food_index
+      set_index
+      render :index
     end
   end
 
@@ -63,6 +55,19 @@ private
 
   def set_stock
     @stock = Stock.find(params[:id])
+  end
+
+  def set_index
+    @lists = current_user.lists.limit(5)
+    @stocks_limit = current_user.stocks.order(limit: "ASC").limit(5)
+    @categories = current_user.categories
+      if params[:category_id]
+        @category = Category.find(params[:category_id])
+        @stocks = @category.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+      else
+        @stocks = current_user.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+      end
+    @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
 
   def set_food_index #foods controllerのindexから持ってきた・・・
