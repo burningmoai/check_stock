@@ -2,18 +2,9 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_food, only: %i[show edit destroy update]
   before_action :is_matching_login_user, only: %i[edit update]
-  helper_method :sort_column, :sort_direction #ビューからも使えるようになるらしい
 
   def index
     set_index
-    # @liked_food = Food.joins(:likes).where(likes: { user: current_user } ) #いいね絞り込み表示したい
-    # # @user = User.find(params[:id])
-    # # likes = Like.where(user_id: current_user.id).pluck(:food_id)
-    # # @liked_food = Food.find(likes)
-    # if params[:sort_create]
-    #   @create_order_food = Food.latest
-    # end
-
   end
 
   def create
@@ -67,9 +58,9 @@ private
     @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @foods = @category.foods.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+        @foods = @category.foods.page(params[:page]).per(10)
       else
-        @foods = current_user.foods.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+        @foods = current_user.foods.page(params[:page]).per(10)
       end
   end
 
@@ -81,13 +72,5 @@ private
     end
   end
 
-  # ソートのための記述
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  def sort_column
-    Food.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-  end
 
 end

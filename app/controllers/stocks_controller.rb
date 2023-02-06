@@ -2,7 +2,6 @@ class StocksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_stock, only: %i[show edit destroy update]
   before_action :is_matching_login_user, only: %i[edit update]
-  helper_method :sort_column, :sort_direction #ビューからも使えるようになるらしい
 
   def new
     @stock = Stock.new
@@ -63,9 +62,9 @@ private
     @categories = current_user.categories
       if params[:category_id]
         @category = Category.find(params[:category_id])
-        @stocks = @category.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+        @stocks = @category.stocks.page(params[:page]).per(10)
       else
-        @stocks = current_user.stocks.page(params[:page]).per(10).order("#{sort_column} #{sort_direction}")
+        @stocks = current_user.stocks.page(params[:page]).per(10)
       end
     @stocks_calendar = params[:name].present? ? Category.find(params[:name]).stock.where(user_id: current_user.id) : Stock.where(user_id: current_user.id)
   end
@@ -90,15 +89,6 @@ private
     if(user_id != login_user_id)
       redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
     end
-  end
-
-  # ソートのための記述
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  def sort_column
-    Food.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
 end
