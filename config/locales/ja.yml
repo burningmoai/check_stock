@@ -13,16 +13,23 @@ ja:
         name: お名前
       food:
         name: 食材名
-        amount: 個数/量
+        amount: 数量
         unit: 単位
         buy_day: 購入日
         limit: 期限
         memo: 備考欄
+        category: カテゴリ名
       category:
         name: カテゴリ名
       list:
-        amount: 個数/量
+        amount: 数量
         unit: 単位
+      stock:
+        category: カテゴリ名
+        amount: 数量
+        buy_day: 購入日
+        limit: 期限
+        memo: メモ
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

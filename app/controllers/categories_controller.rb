@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: %i[destroy update]
+  before_action :is_matching_login_user, only: %i[edit update]
 
   def index
     set_index
@@ -42,4 +43,13 @@ private
     @categories = current_user.categories
     @category_new = Category.new
   end
+
+  def is_matching_login_user
+    user_id = @category.user_id
+    login_user_id = current_user.id
+    if(user_id != login_user_id)
+      redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
+    end
+  end
+
 end

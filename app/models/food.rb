@@ -10,4 +10,6 @@ class Food < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
+
+  scope :latest, -> {order(created_at: :asc)}
 end

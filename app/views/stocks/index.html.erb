@@ -1,14 +1,16 @@
 
 <%#= @stocks.inspect %>
 <div class="container pb-5">
-  <% if @stock %>
-    <%= @stock.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @stock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <div class="alert">
+    <% if @stock %>
+      <%= @stock.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @stock.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   <div class="row">
     <!--お買いものリスト&期限一覧はスマホサイズは非表示にしてヘッダーからアクセスさせる-->
     <div class="d-none d-lg-block col-md-4 mt-3 pb-5">
