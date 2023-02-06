@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_user, only: %i[show edit update]
-  before_action :is_matching_login_user, only: %i[edit update]
+  before_action :is_matching_login_user, only: %i[edit update show]
 
   def show
   end
@@ -34,7 +34,7 @@ private
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to root_path, alert: '他のユーザーの情報は編集できません。'
+      redirect_to root_path, alert: '他のユーザーの情報は閲覧・編集できません。'
     end
   end
 
