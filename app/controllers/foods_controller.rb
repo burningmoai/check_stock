@@ -62,6 +62,12 @@ private
       else
         @foods = current_user.foods.page(params[:page]).per(10)
       end
+
+      if params[:new]
+        @foods = Food.latest.page(params[:page]).per(PER_PAGE)
+      elsif params[:old]
+        @foods = Food.old.page(params[:page]).per(PER_PAGE)
+      end
   end
 
   def is_matching_login_user

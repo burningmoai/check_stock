@@ -11,5 +11,7 @@ class Food < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-  scope :latest, -> {order(created_at: :asc)}
+  # scope :like, -> {order(created_at: :desc)} わからないのでとりあえず後回し
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
 end

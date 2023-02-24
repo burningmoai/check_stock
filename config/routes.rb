@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   resources :foods do
     resource :likes, only: [:create, :destroy]
   end
-  # 食材のソート foodコントローラにsearchアクションを作る
-  get 'foods/search/sort_like', to: 'foods#search', as: 'sort_like'
-  get 'foods/search/sort_new', to: 'foods#search', as: 'sort_new'
-  get 'foods/search/sort_old', to: 'foods#search', as: 'sort_old'
+  # 食材のソート foodコントローラにsearchアクションを作る→結局表示する場所indexでは
+  get 'foods/index/sort_like', to: 'foods#search', as: 'sort_like'
+  get 'foods/index/sort_new', to: 'foods#search', as: 'sort_new'
+  get 'foods/index/sort_old', to: 'foods#search', as: 'sort_old'
   # 食材のソートここまで
   resources :lists, except: [:show]
   resources :users, only: [:show, :edit, :update]
