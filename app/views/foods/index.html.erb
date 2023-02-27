@@ -43,7 +43,9 @@
           <%= render 'categories/btn', categories: @categories %>
         </div>
         <div class="row justify-content-center pb-5">
-
+          <div class="sort">
+            <%= link_to '新しい順', foods_path(new: 'true'), {class: 'sort-link' "#{'active' if current_page?('foods/index?new=true')}"} %>
+          </div>
           <table class="table table-hover justify-content-center mx-5 pb-5">
             <tr>
               <th></th>
